@@ -1,10 +1,17 @@
-import { Button } from "@/components/ui/button";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import LoginPage from "@/components/page/LoginPage";
+import LandingPage from "@/components/page/LandingPage";
+import LoggedInHomepage from "@/components/page/LoggedInHomepage";
 
 function App() {
   return (
-    <div>
-      <Button>Click me</Button>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/home" element={<LoggedInHomepage />} />
+      </Routes>
     </div>
   );
 }
