@@ -10,19 +10,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { BookOpen, Github, Facebook, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log("Login attempt with:", { email, password, rememberMe });
+    // Handle registration logic here
+    console.log("Registration attempt with:", {
+      email,
+      password,
+      confirmPassword,
+    });
   };
 
   return (
@@ -33,10 +36,10 @@ export default function LoginPage() {
             <BookOpen className="h-12 w-12 text-primary" />
           </div>
           <CardTitle className="text-2xl font-bold text-center">
-            Sign in to Book Fellow
+            Create an account
           </CardTitle>
           <CardDescription className="text-center">
-            Enter your email and password to access your account
+            Sign up for Book Fellow and start connecting with book lovers
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -62,28 +65,18 @@ export default function LoginPage() {
                 required
               />
             </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="remember-me"
-                  checked={rememberMe}
-                  onCheckedChange={(checked) =>
-                    setRememberMe(checked as boolean)
-                  }
-                />
-                <Label htmlFor="remember-me" className="text-sm">
-                  Remember me
-                </Label>
-              </div>
-              <Link
-                to="/forgot-password"
-                className="text-sm text-primary hover:underline"
-              >
-                Forgot your password?
-              </Link>
+            <div className="space-y-2">
+              <Label htmlFor="confirm-password">Confirm Password</Label>
+              <Input
+                id="confirm-password"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
             </div>
             <Button type="submit" className="w-full">
-              Sign in
+              Sign up
             </Button>
           </form>
         </CardContent>
@@ -94,7 +87,7 @@ export default function LoginPage() {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                Or continue with
+                Or sign up with
               </span>
             </div>
           </div>
@@ -113,9 +106,9 @@ export default function LoginPage() {
             </Button>
           </div>
           <p className="text-center text-sm text-muted-foreground">
-            Don't have an account?{" "}
-            <Link to="/register" className="text-primary hover:underline">
-              Sign up
+            Already have an account?{" "}
+            <Link to="/login" className="text-primary hover:underline">
+              Sign in
             </Link>
           </p>
         </CardFooter>

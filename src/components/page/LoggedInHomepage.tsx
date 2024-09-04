@@ -1,19 +1,27 @@
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Progress } from "@/components/ui/progress"
-import { BookOpen, PenTool, Users, List, Star, Bell, Search } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Progress } from "@/components/ui/progress";
+import {
+  BookOpen,
+  PenTool,
+  Users,
+  List,
+  Star,
+  Bell,
+  Search,
+} from "lucide-react";
 
 export default function LoggedInHomepage() {
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle search query
-    console.log('Search query:', searchQuery)
-  }
+    console.log("Search query:", searchQuery);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -79,15 +87,24 @@ export default function LoggedInHomepage() {
               <ul className="space-y-4">
                 {[
                   { user: "Alice", action: "finished reading", book: "1984" },
-                  { user: "Bob", action: "wrote a review for", book: "To Kill a Mockingbird" },
-                  { user: "Charlie", action: "added to their reading list", book: "The Catcher in the Rye" },
+                  {
+                    user: "Bob",
+                    action: "wrote a review for",
+                    book: "To Kill a Mockingbird",
+                  },
+                  {
+                    user: "Charlie",
+                    action: "added to their reading list",
+                    book: "The Catcher in the Rye",
+                  },
                 ].map((activity, index) => (
                   <li key={index} className="flex items-center space-x-2">
                     <Avatar className="h-8 w-8">
                       <AvatarFallback>{activity.user[0]}</AvatarFallback>
                     </Avatar>
                     <span>
-                      <strong>{activity.user}</strong> {activity.action} <em>"{activity.book}"</em>
+                      <strong>{activity.user}</strong> {activity.action}{" "}
+                      <em>"{activity.book}"</em>
                     </span>
                   </li>
                 ))}
@@ -103,13 +120,15 @@ export default function LoggedInHomepage() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2">
-                {["To Read", "Favorites", "Book Club Picks"].map((list, index) => (
-                  <li key={index}>
-                    <Button variant="ghost" className="w-full justify-start">
-                      <List className="mr-2 h-4 w-4" /> {list}
-                    </Button>
-                  </li>
-                ))}
+                {["To Read", "Favorites", "Book Club Picks"].map(
+                  (list, index) => (
+                    <li key={index}>
+                      <Button variant="ghost" className="w-full justify-start">
+                        <List className="mr-2 h-4 w-4" /> {list}
+                      </Button>
+                    </li>
+                  ),
+                )}
               </ul>
             </CardContent>
           </Card>
@@ -120,12 +139,14 @@ export default function LoggedInHomepage() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2">
-                {["Dune", "Pride and Prejudice", "The Hobbit"].map((book, index) => (
-                  <li key={index} className="flex items-center space-x-2">
-                    <Star className="h-4 w-4 text-yellow-400" />
-                    <span>{book}</span>
-                  </li>
-                ))}
+                {["Dune", "Pride and Prejudice", "The Hobbit"].map(
+                  (book, index) => (
+                    <li key={index} className="flex items-center space-x-2">
+                      <Star className="h-4 w-4 text-yellow-400" />
+                      <span>{book}</span>
+                    </li>
+                  ),
+                )}
               </ul>
             </CardContent>
           </Card>
@@ -137,7 +158,9 @@ export default function LoggedInHomepage() {
             <CardContent>
               <p className="mb-2">Read 5 classics this month</p>
               <Progress value={60} className="mb-2" />
-              <p className="text-sm text-muted-foreground">3 out of 5 completed</p>
+              <p className="text-sm text-muted-foreground">
+                3 out of 5 completed
+              </p>
             </CardContent>
           </Card>
         </aside>
@@ -148,13 +171,25 @@ export default function LoggedInHomepage() {
           <p>&copy; 2023 Book Fellow</p>
           <nav>
             <ul className="flex space-x-4">
-              <li><a href="#" className="hover:underline">About</a></li>
-              <li><a href="#" className="hover:underline">Privacy</a></li>
-              <li><a href="#" className="hover:underline">Terms</a></li>
+              <li>
+                <a href="#" className="hover:underline">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Privacy
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Terms
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
       </footer>
     </div>
-  )
+  );
 }
