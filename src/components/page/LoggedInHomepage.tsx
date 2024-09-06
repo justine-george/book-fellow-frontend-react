@@ -12,6 +12,7 @@ import {
   Star,
   Bell,
   Search,
+  ChevronDown,
 } from "lucide-react";
 
 export default function LoggedInHomepage() {
@@ -25,29 +26,46 @@ export default function LoggedInHomepage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <header className="bg-primary text-primary-foreground py-4">
+      <header className="bg-primary py-4">
         <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Book Fellow</h1>
-          <form onSubmit={handleSearch} className="flex-grow max-w-md mx-4">
+          <h1 className="text-2xl font-bold text-primary-foreground">Book Fellow</h1>
+          <form onSubmit={handleSearch} className="flex-grow max-w-md mx-4" role="search">
             <div className="relative">
-              <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-primary" />
+              <label htmlFor="search" className="sr-only">Search books, reviews, users</label>
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary h-4 w-4" aria-hidden="true" />
               <Input
+                id="search"
                 type="search"
                 placeholder="Search books, reviews, users..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-primary-foreground text-primary"
+                className="pl-10 bg-background text-foreground border-primary focus:ring-primary h-10"
               />
             </div>
           </form>
-          <nav className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon">
+          <nav className="flex items-center space-x-2">
+            <Button 
+              variant="secondary" 
+              size="icon" 
+              aria-label="Notifications"
+              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 h-10 w-10"
+            >
               <Bell className="h-5 w-5" />
+              <span className="sr-only">Notifications</span>
             </Button>
-            <Avatar>
-              <AvatarImage src="/placeholder-user.jpg" alt="User" />
-              <AvatarFallback>UN</AvatarFallback>
-            </Avatar>
+            <Button 
+              variant="secondary" 
+              className="flex items-center space-x-2 bg-primary-foreground text-primary hover:bg-primary-foreground/90 h-10 px-3" 
+              onClick={() => {/* Add profile navigation logic */}}
+              aria-label="Go to profile"
+            >
+              <Avatar className="h-6 w-6">
+                <AvatarImage src="/placeholder-user.jpg" alt="" />
+                <AvatarFallback>JU</AvatarFallback>
+              </Avatar>
+              <span className="text-sm">Justine</span>
+              <ChevronDown className="h-4 w-4" aria-hidden="true" />
+            </Button>
           </nav>
         </div>
       </header>
