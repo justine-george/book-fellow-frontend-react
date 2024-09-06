@@ -5,6 +5,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   BookOpen,
   PenTool,
   Users,
@@ -13,6 +21,9 @@ import {
   Bell,
   Search,
   ChevronDown,
+  User,
+  Settings,
+  LogOut,
 } from "lucide-react";
 
 export default function LoggedInHomepage() {
@@ -32,7 +43,7 @@ export default function LoggedInHomepage() {
           <form onSubmit={handleSearch} className="flex-grow max-w-md mx-4" role="search">
             <div className="relative">
               <label htmlFor="search" className="sr-only">Search books, reviews, users</label>
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" aria-hidden="true" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary h-4 w-4" aria-hidden="true" />
               <Input
                 id="search"
                 type="search"
@@ -48,24 +59,44 @@ export default function LoggedInHomepage() {
               variant="ghost" 
               size="icon" 
               aria-label="Notifications"
-              className="text-gray-200 hover:bg-gray-700 h-10 w-10"
+              className="text-gray-200 hover:bg-gray-600 hover:text-white focus:bg-gray-600 focus:text-white h-10 w-10 transition-colors duration-200"
             >
               <Bell className="h-5 w-5" />
               <span className="sr-only">Notifications</span>
             </Button>
-            <Button 
-              variant="ghost" 
-              className="flex items-center space-x-2 text-gray-200 hover:bg-gray-700 h-10 px-3" 
-              onClick={() => {/* Add profile navigation logic */}}
-              aria-label="Go to profile"
-            >
-              <Avatar className="h-6 w-6">
-                <AvatarImage src="/placeholder-user.jpg" alt="" />
-                <AvatarFallback>JU</AvatarFallback>
-              </Avatar>
-              <span className="text-sm">Justine</span>
-              <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  className="flex items-center space-x-2 text-gray-200 hover:bg-gray-600 hover:text-white focus:bg-gray-600 focus:text-white h-10 px-3 transition-colors duration-200" 
+                  aria-label="Profile menu"
+                >
+                  <Avatar className="h-6 w-6">
+                    <AvatarImage src="/placeholder-user.jpg" alt="" />
+                    <AvatarFallback>JU</AvatarFallback>
+                  </Avatar>
+                  <span className="text-sm">Justine</span>
+                  <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
         </div>
       </header>
