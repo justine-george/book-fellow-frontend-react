@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
+import { useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -48,12 +49,17 @@ function getRandomColor() {
 
 export default function LoggedInHomepage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle search query
     console.log("Search query:", searchQuery);
   };
+
+  function handleLogout(event: MouseEvent<HTMLSpanElement, MouseEvent>): void {
+    navigate("/");
+  }
 
   // Add this inside the component
   const communityFeed = useMemo(() => [
@@ -82,15 +88,19 @@ export default function LoggedInHomepage() {
     pagesRead: 112,
     totalPages: 340,
     timeSpent: "5h 23m",
+    rating: 4,
   };
+  
+  
+  
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <header className="bg-gray-800 text-gray-200 py-4 shadow-md">
+      <header className="bg-slate-900 text-primary-foreground py-4 shadow-md sticky top-0 z-50">
         <div className="container mx-auto flex justify-between items-center px-4">
           <div className="flex items-center">
             <img src={logoImage} alt="Book Fellow Logo" className="h-12 w-12 mr-2 filter invert" />
-            <h1 className="text-2xl font-bold">Book Fellow</h1>
+            <h1 className="text-2xl font-bold hidden md:block">Book Fellow</h1>
           </div>
           <form onSubmit={handleSearch} className="flex-grow max-w-md mx-4" role="search">
             <div className="relative">
@@ -127,7 +137,7 @@ export default function LoggedInHomepage() {
                     <AvatarImage src={userAvatar} alt="User avatar" />
                     <AvatarFallback>JU</AvatarFallback>
                   </Avatar>
-                  <span className="text-sm">Justine</span>
+                  <span className="text-sm hidden md:block">Justine</span>
                   <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
                 </Button>
               </DropdownMenuTrigger>
@@ -143,7 +153,7 @@ export default function LoggedInHomepage() {
                   <span>Settings</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout}>
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Log out</span>
                 </DropdownMenuItem>
@@ -167,6 +177,19 @@ export default function LoggedInHomepage() {
                     <h3 className="font-semibold text-lg leading-tight">{currentlyReading.title}</h3>
                     <p className="text-sm text-muted-foreground">{currentlyReading.author}</p>
                   </div>
+                  <div className="flex items-center">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`h-4 w-4 ${
+                          i < currentlyReading.rating
+                            ? "text-yellow-400 fill-current"
+                            : "text-gray-300"
+                        }`}
+                      />
+                    ))}
+                    <span className="ml-2 text-sm text-muted-foreground">Your rating</span>
+                  </div>
                   <div className="space-y-1">
                     <div className="flex justify-between items-center text-sm">
                       <span className="text-muted-foreground">Progress</span>
@@ -189,7 +212,7 @@ export default function LoggedInHomepage() {
                   <BookOpen className="mr-2 h-4 w-4" /> Continue Reading
                 </Button>
                 <Button variant="outline" className="flex-grow">
-                  <PenTool className="mr-2 h-4 w-4" /> Write a Review
+                  <PenTool className="mr-2 h-4 w-4" /> Update Rating
                 </Button>
               </div>
             </CardContent>
@@ -306,7 +329,7 @@ export default function LoggedInHomepage() {
         </aside>
       </main>
 
-      <footer className="bg-gray-800 text-gray-200 py-8 mt-8">
+      <footer className="bg-slate-900 text-gray-200 py-8 mt-8">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
           <p className="mb-4 md:mb-0">&copy; 2024 Book Fellow. All rights reserved.</p>
           <nav>

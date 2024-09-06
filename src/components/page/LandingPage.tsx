@@ -73,7 +73,7 @@ export default function LandingPage() {
               Share reviews, create reading lists, and discover your next
               favorite book.
             </p>
-            <Link to="/register">
+            <Link to="/home">
               <Button
                 size="lg"
                 className="text-lg bg-white text-primary hover:bg-primary-foreground hover:text-primary transition-colors duration-300"
