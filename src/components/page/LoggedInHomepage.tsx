@@ -25,6 +25,17 @@ import {
   LogOut,
 } from "lucide-react";
 
+// Import images from assets
+import logoImage from "@/assets/logo.png";
+import userAvatar from "@/assets/profile.jpg";
+import book_cover_great_gatsby from "@/assets/great-gatsby.webp";
+import book_cover_1984 from "@/assets/1984.webp";
+import book_cover_to_kill_a_mockingbird from "@/assets/to-kill-a-mockingbird.webp";
+import book_cover_the_catcher_in_the_rye from "@/assets/the-catcher-in-the-rye.jpg";
+import book_cover_dune from "@/assets/dune.webp";
+import book_cover_pride_and_prejudice from "@/assets/pride-and-prejudice.jpg";
+import book_cover_the_hobbit from "@/assets/the-hobbit.jpg";
+
 export default function LoggedInHomepage() {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -38,7 +49,10 @@ export default function LoggedInHomepage() {
     <div className="min-h-screen flex flex-col bg-background">
       <header className="bg-gray-800 text-gray-200 py-4 shadow-md">
         <div className="container mx-auto flex justify-between items-center px-4">
-          <h1 className="text-2xl font-bold">Book Fellow</h1>
+          <div className="flex items-center">
+            <img src={logoImage} alt="Book Fellow Logo" className="h-12 w-12 mr-2 filter invert" />
+            <h1 className="text-2xl font-bold">Book Fellow</h1>
+          </div>
           <form onSubmit={handleSearch} className="flex-grow max-w-md mx-4" role="search">
             <div className="relative">
               <label htmlFor="search" className="sr-only">Search books, reviews, users</label>
@@ -70,8 +84,8 @@ export default function LoggedInHomepage() {
                   className="flex items-center space-x-2 text-gray-200 hover:bg-gray-600 hover:text-white focus:bg-gray-600 focus:text-white h-10 px-3 transition-colors duration-200" 
                   aria-label="Profile menu"
                 >
-                  <Avatar className="h-6 w-6">
-                    <AvatarImage src="/placeholder-user.jpg" alt="" />
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={userAvatar} alt="User avatar" />
                     <AvatarFallback>JU</AvatarFallback>
                   </Avatar>
                   <span className="text-sm">Justine</span>
@@ -108,7 +122,7 @@ export default function LoggedInHomepage() {
             </CardHeader>
             <CardContent>
               <div className="flex items-center space-x-4 mb-6">
-                <BookOpen className="h-10 w-10 text-primary" />
+                <img src={book_cover_great_gatsby} alt="The Great Gatsby cover" className="h-20 w-14 object-cover rounded" />
                 <div className="flex-grow">
                   <h3 className="font-semibold text-lg">Currently Reading</h3>
                   <p className="text-muted-foreground">"The Great Gatsby" by F. Scott Fitzgerald</p>
@@ -134,12 +148,13 @@ export default function LoggedInHomepage() {
             <CardContent>
               <ul className="space-y-4">
                 {[
-                  { user: "Alice", action: "finished reading", book: "1984" },
-                  { user: "Bob", action: "wrote a review for", book: "To Kill a Mockingbird" },
-                  { user: "Charlie", action: "added to their reading list", book: "The Catcher in the Rye" },
+                  { user: "Alice", action: "finished reading", book: "1984", avatar: userAvatar },
+                  { user: "Bob", action: "wrote a review for", book: "To Kill a Mockingbird", avatar: userAvatar },
+                  { user: "Charlie", action: "added to their reading list", book: "The Catcher in the Rye", avatar: userAvatar },
                 ].map((activity, index) => (
                   <li key={index} className="flex items-center space-x-3 p-2 rounded-md hover:bg-muted/50 transition-colors duration-200">
                     <Avatar className="h-10 w-10">
+                      <AvatarImage src={activity.avatar} alt={`${activity.user}'s avatar`} />
                       <AvatarFallback>{activity.user[0]}</AvatarFallback>
                     </Avatar>
                     <span className="flex-grow">
@@ -178,10 +193,14 @@ export default function LoggedInHomepage() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2">
-                {["Dune", "Pride and Prejudice", "The Hobbit"].map((book, index) => (
+                {[
+                  { title: "Dune", cover: book_cover_dune },
+                  { title: "Pride and Prejudice", cover: book_cover_pride_and_prejudice },
+                  { title: "The Hobbit", cover: book_cover_the_hobbit },
+                ].map((book, index) => (
                   <li key={index} className="flex items-center space-x-2 p-2 rounded-md hover:bg-muted/50 transition-colors duration-200">
-                    <Star className="h-4 w-4 text-yellow-400" />
-                    <span>{book}</span>
+                    <img src={book.cover} alt={`${book.title} cover`} className="h-12 w-8 object-cover rounded" />
+                    <span>{book.title}</span>
                   </li>
                 ))}
               </ul>
