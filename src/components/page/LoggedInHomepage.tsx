@@ -15,7 +15,6 @@ import {
 import {
   BookOpen,
   PenTool,
-  Users,
   List,
   Star,
   Bell,
