@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, Users, List, Star } from "lucide-react";
+import { BookOpen, Users, List, Star, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function LandingPage() {
@@ -10,47 +10,37 @@ export default function LandingPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle email submission (e.g., send to backend, show confirmation)
     console.log("Submitted email:", email);
     setEmail("");
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="bg-primary text-primary-foreground py-4">
+    <div className="min-h-screen flex flex-col bg-background">
+      <header className="bg-primary text-primary-foreground py-6">
         <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Book Fellow</h1>
+          <h1 className="text-3xl font-extrabold">Book Fellow</h1>
           <nav>
-            <ul className="flex items-center space-x-6">
+            <ul className="flex items-center space-x-8">
               <li>
-                <a
-                  href="#features"
-                  className="text-sm text-primary-foreground hover:text-white focus:text-white underline-offset-4 hover:underline focus:underline transition-colors"
-                >
+                <a href="#features" className="text-lg hover:underline">
                   Features
                 </a>
               </li>
               <li>
-                <a
-                  href="#testimonials"
-                  className="text-sm text-primary-foreground hover:text-white focus:text-white underline-offset-4 hover:underline focus:underline transition-colors"
-                >
+                <a href="#testimonials" className="text-lg hover:underline">
                   Testimonials
                 </a>
               </li>
               <li>
                 <Link to="/login">
-                  <Button
-                    variant="outline"
-                    className="text-sm bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary focus:bg-primary-foreground focus:text-primary"
-                  >
+                  <Button variant="outline" size="lg" className="text-lg">
                     Log In
                   </Button>
                 </Link>
               </li>
               <li>
                 <Link to="/register">
-                  <Button variant="secondary" className="text-sm">
+                  <Button variant="secondary" size="lg" className="text-lg">
                     Sign Up
                   </Button>
                 </Link>
@@ -61,65 +51,65 @@ export default function LandingPage() {
       </header>
 
       <main className="flex-grow">
-        <section className="bg-primary text-primary-foreground py-20 relative overflow-hidden">
+        <section className="bg-primary text-primary-foreground py-32 relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CjxyZWN0IHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2ZmZiI+PC9yZWN0Pgo8cGF0aCBkPSJNMzYgMjRMNDggMjRMNDggMzZMNDggNDhMMzYgNDhMMjQgNDhMMjQgMzZMMjQgMjRMMzYgMjRaIiBmaWxsPSIjZjFmMWYxIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjwvcGF0aD4KPC9zdmc+')]"></div>
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CjxyZWN0IHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2ZmZiI+PC9yZWN0Pgo8cGF0aCBkPSJNMzYgMjRMNDggMjRMNDggMzZMNDggNDhMMzYgNDhMMjQgNDhMMjQgMzZMMjQgMjRMMzYgMjRaIiBmaWxsPSIjZjFmMWYxIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjwvcGF0aD4KPC9zdmc+')] bg-repeat"></div>
           </div>
           <div className="container mx-auto text-center relative z-10">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Connect with Fellow Book Lovers
+            <h2 className="text-6xl font-extrabold mb-6 leading-tight">
+              Connect with Fellow<br />Book Lovers
             </h2>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-2xl mb-10 opacity-90 max-w-2xl mx-auto">
               Share reviews, create reading lists, and discover your next
-              favorite book.
+              favorite book in our vibrant community.
             </p>
             <Link to="/home">
               <Button
                 size="lg"
-                className="text-lg bg-white text-primary hover:bg-primary-foreground hover:text-primary transition-colors duration-300"
+                className="text-xl bg-white text-primary hover:bg-primary-foreground hover:text-primary transition-colors duration-300 px-8 py-6"
               >
-                Get Started
+                Get Started <ArrowRight className="ml-2 h-6 w-6" />
               </Button>
             </Link>
           </div>
         </section>
 
-        <section id="features" className="py-20 bg-background">
+        <section id="features" className="py-24 bg-background">
           <div className="container mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">Features</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <h2 className="text-4xl font-bold text-center mb-16">Features</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
               {[
                 {
-                  icon: <BookOpen className="w-10 h-10" />,
+                  icon: <BookOpen className="w-16 h-16" />,
                   title: "Detailed Reviews",
                   description: "Write and read in-depth book reviews",
                 },
                 {
-                  icon: <Users className="w-10 h-10" />,
+                  icon: <Users className="w-16 h-16" />,
                   title: "Community",
                   description: "Connect with other book enthusiasts",
                 },
                 {
-                  icon: <List className="w-10 h-10" />,
+                  icon: <List className="w-16 h-16" />,
                   title: "Reading Lists",
                   description: "Create and share personalized reading lists",
                 },
                 {
-                  icon: <Star className="w-10 h-10" />,
+                  icon: <Star className="w-16 h-16" />,
                   title: "Activity Tracking",
                   description: "Follow friends' reading activities",
                 },
               ].map((feature, index) => (
                 <Card
                   key={index}
-                  className="flex flex-col items-center text-center p-6"
+                  className="flex flex-col items-center text-center p-8 hover:shadow-lg transition-shadow duration-300"
                 >
                   <CardContent className="flex flex-col items-center flex-grow">
-                    <div className="mb-4">{feature.icon}</div>
-                    <h3 className="text-xl font-semibold mb-2">
+                    <div className="mb-6 text-primary">{feature.icon}</div>
+                    <h3 className="text-2xl font-bold mb-4">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-lg text-muted-foreground">
                       {feature.description}
                     </p>
                   </CardContent>
@@ -129,12 +119,12 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="testimonials" className="py-20 bg-muted">
+        <section id="testimonials" className="py-24 bg-muted">
           <div className="container mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-4xl font-bold text-center mb-16">
               What Our Users Say
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {[
                 {
                   name: "Alice Johnson",
@@ -152,10 +142,10 @@ export default function LandingPage() {
                     "I love sharing my reading lists and seeing what my friends are reading. It's like a book club that never ends!",
                 },
               ].map((testimonial, index) => (
-                <Card key={index} className="p-6">
+                <Card key={index} className="p-8 hover:shadow-lg transition-shadow duration-300">
                   <CardContent>
-                    <p className="mb-4 italic">"{testimonial.quote}"</p>
-                    <p className="font-semibold">- {testimonial.name}</p>
+                    <p className="text-xl mb-6 italic">"{testimonial.quote}"</p>
+                    <p className="text-lg font-semibold">- {testimonial.name}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -163,13 +153,13 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="py-20 bg-primary text-primary-foreground">
+        <section className="py-24 bg-primary text-primary-foreground">
           <div className="container mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">
+            <h2 className="text-4xl font-bold mb-6">
               Join Our Community of Book Lovers
             </h2>
-            <p className="mb-8">
-              Sign up now and start sharing your literary journey!
+            <p className="text-xl mb-10 max-w-2xl mx-auto">
+              Sign up now and start sharing your literary journey with fellow book enthusiasts!
             </p>
             <form
               onSubmit={handleSubmit}
@@ -180,10 +170,10 @@ export default function LandingPage() {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mr-2 bg-primary-foreground text-primary"
+                className="mr-4 bg-primary-foreground text-primary text-lg py-6"
                 required
               />
-              <Button type="submit" variant="secondary">
+              <Button type="submit" variant="secondary" size="lg" className="text-lg px-8">
                 Sign Up
               </Button>
             </form>
@@ -191,9 +181,9 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="bg-primary text-primary-foreground py-8">
+      <footer className="bg-primary text-primary-foreground py-10">
         <div className="container mx-auto text-center">
-          <p>&copy; 2024 Book Fellow. All rights reserved.</p>
+          <p className="text-lg">&copy; 2024 Book Fellow. All rights reserved.</p>
         </div>
       </footer>
     </div>

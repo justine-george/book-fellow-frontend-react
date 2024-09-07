@@ -41,10 +41,15 @@ export const Header = ({
     navigate("/");
   };
 
+  const handleLogoClick = () => {
+    navigate("/home");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <header className="bg-slate-900 text-primary-foreground py-4 shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center px-4">
-        <div className="flex items-center">
+        <div className="flex items-center cursor-pointer" onClick={handleLogoClick}>
           <img
             src={logoImage}
             alt="Book Fellow Logo"
