@@ -35,21 +35,35 @@ export default function LandingPage() {
   const fadeInDown = {
     initial: { opacity: 0, y: -20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 5, ease: "easeInOut", delay: 0.5 },
+    transition: { duration: 0.5, ease: "easeOut" },
   };
 
   const fadeIn = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
-    transition: { duration: 5, ease: "easeInOut", delay: 0.5 },
+    transition: { duration: 0.5, ease: "easeOut" },
   };
 
   const staggerChildren = {
     animate: {
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
+  };
+
+  const heroStagger = {
+    animate: {
+      transition: {
+        staggerChildren: 0.5,
+      },
+    },
+  };
+
+  const heroFadeIn = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, ease: "easeOut" },
   };
 
   return (
@@ -135,9 +149,8 @@ export default function LandingPage() {
         <motion.section
           className="bg-primary text-primary-foreground py-32 relative overflow-hidden"
           initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeIn}
+          animate="animate"
+          variants={heroStagger}
         >
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/90 to-primary/70 z-10"></div>
@@ -171,24 +184,33 @@ export default function LandingPage() {
           </div>
           <motion.div
             className="container mx-auto text-center relative z-20 px-4"
-            variants={staggerChildren}
+            variants={heroStagger}
           >
             <motion.h2
               className="text-6xl font-extrabold mb-6 leading-tight"
-              variants={fadeInDown}
+              variants={heroFadeIn}
             >
-              Connect with Fellow
-              <br />
-              Book Lovers
+              <motion.span
+                className="block"
+                variants={heroFadeIn}
+              >
+                Connect with Fellow
+              </motion.span>
+              <motion.span
+                className="block"
+                variants={heroFadeIn}
+              >
+                Book Lovers
+              </motion.span>
             </motion.h2>
             <motion.p
               className="text-2xl mb-10 opacity-90 max-w-2xl mx-auto"
-              variants={fadeInDown}
+              variants={heroFadeIn}
             >
               Share reviews, create reading lists, and discover your next
               favorite book in our vibrant community.
             </motion.p>
-            <motion.div variants={fadeInDown}>
+            <motion.div variants={heroFadeIn}>
               <Link to="/home">
                 <Button
                   size="lg"
@@ -201,174 +223,171 @@ export default function LandingPage() {
           </motion.div>
         </motion.section>
 
-        <motion.section
-          id="features"
-          className="py-12 sm:py-16 bg-background"
+        <motion.div
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, amount: 0.3 }}
-          variants={fadeIn}
         >
-          <div className="container mx-auto px-4">
-            <motion.h2
-              className="text-4xl font-bold text-center mb-12 sm:mb-16"
-              variants={fadeInDown}
-            >
-              Features
-            </motion.h2>
-            <motion.div
-              className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6"
-              variants={staggerChildren}
-            >
-              {[
-                {
-                  icon: <BookOpenText className="w-8 h-8 text-primary" />,
-                  title: "Detailed Reviews",
-                  description: "Write and read in-depth book reviews",
-                },
-                {
-                  icon: <UsersRound className="w-8 h-8 text-primary" />,
-                  title: "Community",
-                  description: "Connect with other book enthusiasts",
-                },
-                {
-                  icon: <ListCollapse className="w-8 h-8 text-primary" />,
-                  title: "Reading Lists",
-                  description: "Create and share personalized reading lists",
-                },
-                {
-                  icon: <Activity className="w-8 h-8 text-primary" />,
-                  title: "Activity Tracking",
-                  description: "Follow friends' reading activities",
-                },
-              ].map((feature, index) => (
-                <motion.div key={index} variants={fadeInDown}>
-                  <Card className="hover:shadow-md transition-shadow duration-300 h-full">
-                    <CardContent className="px-6 py-8 flex flex-col h-full">
-                      <div className="mb-3">{feature.icon}</div>
-                      <h3 className="text-lg font-bold mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.section>
+          <motion.section
+            id="features"
+            className="py-12 sm:py-16 bg-background"
+            variants={fadeIn}
+          >
+            <div className="container mx-auto px-4">
+              <motion.h2
+                className="text-4xl font-bold text-center mb-12 sm:mb-16"
+                variants={fadeInDown}
+              >
+                Features
+              </motion.h2>
+              <motion.div
+                className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                variants={staggerChildren}
+              >
+                {[
+                  {
+                    icon: <BookOpenText className="w-8 h-8 text-primary" />,
+                    title: "Detailed Reviews",
+                    description: "Write and read in-depth book reviews",
+                  },
+                  {
+                    icon: <UsersRound className="w-8 h-8 text-primary" />,
+                    title: "Community",
+                    description: "Connect with other book enthusiasts",
+                  },
+                  {
+                    icon: <ListCollapse className="w-8 h-8 text-primary" />,
+                    title: "Reading Lists",
+                    description: "Create and share personalized reading lists",
+                  },
+                  {
+                    icon: <Activity className="w-8 h-8 text-primary" />,
+                    title: "Activity Tracking",
+                    description: "Follow friends' reading activities",
+                  },
+                ].map((feature, index) => (
+                  <motion.div key={index} variants={fadeInDown}>
+                    <Card className="hover:shadow-md transition-shadow duration-300 h-full">
+                      <CardContent className="px-6 py-8 flex flex-col h-full">
+                        <div className="mb-3">{feature.icon}</div>
+                        <h3 className="text-lg font-bold mb-2">
+                          {feature.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {feature.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </motion.section>
 
-        <motion.section
-          id="testimonials"
-          className="py-12 sm:py-16 bg-secondary/10"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeIn}
-        >
-          <div className="container mx-auto px-4">
-            <motion.h2
-              className="text-4xl font-bold text-center mb-12 sm:mb-16"
-              variants={fadeInDown}
-            >
-              What Our Users Say
-            </motion.h2>
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 gap-10"
-              variants={staggerChildren}
-            >
-              {[
-                {
-                  name: "Alice Johnson",
-                  quote:
-                    "Book Fellow has revolutionized how I discover new books and connect with other readers!",
-                },
-                {
-                  name: "Mark Thompson",
-                  quote:
-                    "The detailed reviews on Book Fellow have helped me find my new favorite authors.",
-                },
-                {
-                  name: "Sarah Lee",
-                  quote:
-                    "I love sharing my reading lists and seeing what my friends are reading. It's like a book club that never ends!",
-                },
-              ].map((testimonial, index) => (
-                <motion.div key={index} variants={fadeInDown}>
-                  <Card className="hover:shadow-md transition-shadow duration-300 h-64 flex flex-col">
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <Quote className="w-10 h-10 text-primary mb-4 flex-shrink-0" />
-                      <p className="text-lg flex-grow mb-4 overflow-y-auto">
-                        {testimonial.quote}
-                      </p>
-                      <p className="text-base font-semibold text-primary flex-shrink-0">
-                        - {testimonial.name}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.section>
+          <motion.section
+            id="testimonials"
+            className="py-12 sm:py-16 bg-secondary/10"
+            variants={fadeIn}
+          >
+            <div className="container mx-auto px-4">
+              <motion.h2
+                className="text-4xl font-bold text-center mb-12 sm:mb-16"
+                variants={fadeInDown}
+              >
+                What Our Users Say
+              </motion.h2>
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-3 gap-10"
+                variants={staggerChildren}
+              >
+                {[
+                  {
+                    name: "Alice Johnson",
+                    quote:
+                      "Book Fellow has revolutionized how I discover new books and connect with other readers!",
+                  },
+                  {
+                    name: "Mark Thompson",
+                    quote:
+                      "The detailed reviews on Book Fellow have helped me find my new favorite authors.",
+                  },
+                  {
+                    name: "Sarah Lee",
+                    quote:
+                      "I love sharing my reading lists and seeing what my friends are reading. It's like a book club that never ends!",
+                  },
+                ].map((testimonial, index) => (
+                  <motion.div key={index} variants={fadeInDown}>
+                    <Card className="hover:shadow-md transition-shadow duration-300 h-64 flex flex-col">
+                      <CardContent className="p-6 flex flex-col h-full">
+                        <Quote className="w-10 h-10 text-primary mb-4 flex-shrink-0" />
+                        <p className="text-lg flex-grow mb-4 overflow-y-auto">
+                          {testimonial.quote}
+                        </p>
+                        <p className="text-base font-semibold text-primary flex-shrink-0">
+                          - {testimonial.name}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </motion.section>
 
-        <motion.section
-          className="py-12 sm:py-16 bg-secondary/10"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeIn}
-        >
-          <div className="container mx-auto text-center px-4">
-            <motion.h2
-              className="text-4xl font-bold mb-6"
-              variants={fadeInDown}
-            >
-              Join Our Community of Book Lovers
-            </motion.h2>
-            <motion.p
-              className="text-xl mb-10 max-w-2xl mx-auto text-muted-foreground"
-              variants={fadeInDown}
-            >
-              Sign up now and start sharing your literary journey with fellow
-              book enthusiasts!
-            </motion.p>
-            <motion.div variants={fadeInDown}>
-              <Card className="max-w-md mx-auto">
-                <CardContent className="pt-6">
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="space-y-2">
-                      <Input
-                        type="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="text-lg py-6 cursor-text"
-                        required
-                      />
-                    </div>
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full text-lg cursor-pointer"
-                    >
-                      Sign Up
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.p
-              className="mt-6 text-sm text-muted-foreground"
-              variants={fadeInDown}
-            >
-              By signing up, you agree to our Terms of Service and Privacy
-              Policy.
-            </motion.p>
-          </div>
-        </motion.section>
+          <motion.section
+            className="py-12 sm:py-16 bg-secondary/10"
+            variants={fadeIn}
+          >
+            <div className="container mx-auto text-center px-4">
+              <motion.h2
+                className="text-4xl font-bold mb-6"
+                variants={fadeInDown}
+              >
+                Join Our Community of Book Lovers
+              </motion.h2>
+              <motion.p
+                className="text-xl mb-10 max-w-2xl mx-auto text-muted-foreground"
+                variants={fadeInDown}
+              >
+                Sign up now and start sharing your literary journey with fellow
+                book enthusiasts!
+              </motion.p>
+              <motion.div variants={fadeInDown}>
+                <Card className="max-w-md mx-auto">
+                  <CardContent className="pt-6">
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div className="space-y-2">
+                        <Input
+                          type="email"
+                          placeholder="Enter your email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          className="text-lg py-6 cursor-text"
+                          required
+                        />
+                      </div>
+                      <Button
+                        type="submit"
+                        size="lg"
+                        className="w-full text-lg cursor-pointer"
+                      >
+                        Sign Up
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
+              </motion.div>
+              <motion.p
+                className="mt-6 text-sm text-muted-foreground"
+                variants={fadeInDown}
+              >
+                By signing up, you agree to our Terms of Service and Privacy
+                Policy.
+              </motion.p>
+            </div>
+          </motion.section>
+        </motion.div>
       </main>
 
       <motion.footer
