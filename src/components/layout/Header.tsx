@@ -72,7 +72,7 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setSearchQuery(e.target.value)
               }
-              className="pl-10 bg-primary/20 text-primary-foreground h-9 w-full placeholder-primary-foreground/50 border-primary-foreground/30 focus:border-primary-foreground/50 focus:ring-1 focus:ring-primary-foreground/50"
+              className="pl-10 bg-primary/20 text-primary-foreground h-9 w-full placeholder-primary-foreground/50 border-primary-foreground/30 focus:border-primary-foreground/50 focus:ring-1 focus:ring-primary-foreground/50 cursor-text"
             />
           </div>
         </form>
@@ -81,7 +81,7 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
             variant="ghost"
             size="icon"
             aria-label="Notifications"
-            className="text-primary-foreground hover:bg-primary-foreground/10 focus:bg-primary-foreground/10 h-10 w-10 transition-colors duration-200"
+            className="text-primary-foreground hover:bg-primary-foreground/10 focus:bg-primary-foreground/10 h-10 w-10 transition-colors duration-200 cursor-pointer"
           >
             <Bell className="h-5 w-5" />
             <span className="sr-only">Notifications</span>
@@ -90,7 +90,7 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex items-center space-x-2 text-primary-foreground hover:bg-primary-foreground/10 focus:bg-primary-foreground/10 h-10 px-3 transition-colors duration-200"
+                className="flex items-center space-x-2 text-primary-foreground hover:bg-primary-foreground/10 focus:bg-primary-foreground/10 h-10 px-3 transition-colors duration-200 cursor-pointer"
                 aria-label="Profile menu"
               >
                 <Avatar className="h-8 w-8">
@@ -104,16 +104,16 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
             <DropdownMenuContent className="w-56" align="end">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer">
                 <User className="mr-2 h-4 w-4" />
                 <span>Profile</span>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer">
                 <Settings className="mr-2 h-4 w-4" />
                 <span>Settings</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={handleLogout}>
+              <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>
               </DropdownMenuItem>

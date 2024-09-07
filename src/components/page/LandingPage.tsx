@@ -30,7 +30,7 @@ export default function LandingPage() {
       <header className="bg-primary text-primary-foreground py-4 sticky top-0 z-50 shadow-md">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center">
+            <div className="flex items-center cursor-pointer">
               <BookOpen className="h-8 w-8 mr-2" />
               <h1 className="text-2xl sm:text-3xl font-extrabold">
                 Book Fellow
@@ -233,11 +233,11 @@ export default function LandingPage() {
                       placeholder="Enter your email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="text-lg py-6"
+                      className="text-lg py-6 cursor-text"
                       required
                     />
                   </div>
-                  <Button type="submit" size="lg" className="w-full text-lg">
+                  <Button type="submit" size="lg" className="w-full text-lg cursor-pointer">
                     Sign Up
                   </Button>
                 </form>

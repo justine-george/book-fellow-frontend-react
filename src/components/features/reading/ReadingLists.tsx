@@ -32,7 +32,7 @@ export const ReadingLists: React.FC<ReadingListsProps> = ({
           <Button
             variant="outline"
             size="sm"
-            className="text-primary"
+            className="text-primary cursor-pointer"
             onClick={onNewList}
             aria-label="Create new reading list"
           >
@@ -48,7 +48,7 @@ export const ReadingLists: React.FC<ReadingListsProps> = ({
               <li key={index}>
                 <Button
                   variant="ghost"
-                  className="w-full text-left hover:bg-muted/50 transition-colors duration-200 px-3 py-2 h-auto"
+                  className="w-full text-left hover:bg-muted/50 transition-colors duration-200 px-3 py-2 h-auto cursor-pointer"
                   onClick={() => onSelectList(list)}
                 >
                   <div className="flex items-center justify-between w-full">

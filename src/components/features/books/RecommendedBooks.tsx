@@ -25,7 +25,7 @@ export const RecommendedBooks = ({
           {recommendedBooks.map((book, index) => (
             <li
               key={index}
-              className="flex items-start space-x-3 p-2 rounded-md hover:bg-muted/50 transition-colors duration-200"
+              className="flex items-start space-x-3 p-2 rounded-md hover:bg-muted/50 transition-colors duration-200 cursor-pointer"
             >
               <img
                 src={book.cover}
@@ -53,7 +53,7 @@ export const RecommendedBooks = ({
                   </span>
                 </div>
               </div>
-              <Button variant="outline" size="sm" className="mt-2">
+              <Button variant="outline" size="sm" className="mt-2 cursor-pointer">
                 Add to List
               </Button>
             </li>
