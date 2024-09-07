@@ -1,5 +1,6 @@
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Users } from "lucide-react";
 
 export const CommunityFeed = ({
   communityFeed,
@@ -14,16 +15,19 @@ export const CommunityFeed = ({
   }[];
 }) => {
   return (
-    <Card className="shadow-sm hover:shadow-md transition-shadow duration-200">
-      <CardHeader className="pb-2">
-        <CardTitle className="text-xl">Community Feed</CardTitle>
+    <Card className="shadow-md hover:shadow-lg transition-shadow duration-200">
+      <CardHeader className="pb-4">
+        <CardTitle className="text-2xl font-bold flex items-center">
+          <Users className="mr-3 h-6 w-6" />
+          Community Feed
+        </CardTitle>
       </CardHeader>
       <CardContent>
-        <ul className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {communityFeed.map((activity, index) => (
-            <li
+            <div
               key={index}
-              className="flex items-start space-x-3 p-2 rounded-md hover:bg-muted/50 transition-colors duration-200"
+              className="flex items-center space-x-3 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors duration-200"
             >
               <Avatar className="h-10 w-10 relative">
                 <div
@@ -39,23 +43,21 @@ export const CommunityFeed = ({
                 />
                 <AvatarFallback>{activity.user[0]}</AvatarFallback>
               </Avatar>
-              <div className="flex-grow">
-                <span>
-                  <strong className="font-medium">{activity.user}</strong>{" "}
-                  <span className="text-muted-foreground">
-                    {activity.action}
-                  </span>{" "}
-                  <em className="font-medium not-italic">"{activity.book}"</em>
-                </span>
+              <div className="flex-grow min-w-0">
+                <p className="text-sm font-medium truncate">
+                  <span className="font-semibold">{activity.user}</span>{" "}
+                  <span className="text-muted-foreground">{activity.action}</span>
+                </p>
+                <p className="text-xs text-muted-foreground truncate">"{activity.book}"</p>
               </div>
               <img
                 src={activity.bookCover}
                 alt={`${activity.book} cover`}
-                className="h-24 w-16 object-cover rounded shadow-sm"
+                className="h-16 w-12 object-cover rounded shadow-sm"
               />
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </CardContent>
     </Card>
   );

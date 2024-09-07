@@ -1,6 +1,6 @@
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
+import { Star, BookHeart } from "lucide-react";
 
 export const RecommendedBooks = ({
   recommendedBooks,
@@ -15,7 +15,10 @@ export const RecommendedBooks = ({
   return (
     <Card className="shadow-sm hover:shadow-md transition-shadow duration-200">
       <CardHeader className="pb-2">
-        <CardTitle className="text-xl">Recommended for You</CardTitle>
+        <CardTitle className="text-xl flex items-center">
+          <BookHeart className="mr-3 h-5 w-5" />
+          Recommended for You
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <ul className="space-y-4">

@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { BookOpen, PenTool, Star, Clock } from "lucide-react";
+import { BookOpen, PenTool, Star, Clock, Activity } from "lucide-react";
 
 export const ReadingActivity = ({
   currentlyReading,
@@ -20,7 +20,8 @@ export const ReadingActivity = ({
   return (
     <Card className="shadow-md hover:shadow-lg transition-shadow duration-200">
       <CardHeader className="pb-6">
-        <CardTitle className="text-2xl font-bold">
+        <CardTitle className="text-2xl font-bold flex items-center">
+          <Activity className="mr-3 h-6 w-6" />
           Your Reading Activity
         </CardTitle>
       </CardHeader>

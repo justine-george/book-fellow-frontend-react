@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import { BookOpen, Heart, Users } from "lucide-react";
 
 // Import components
@@ -11,7 +11,6 @@ import { CommunityChallenge } from "@/components/features/community/CommunityCha
 import { Footer } from "@/components/layout/Footer";
 
 // Import images from assets
-import logoImage from "@/assets/logo.png";
 import userAvatar from "@/assets/profile.jpg";
 import book_cover_great_gatsby from "@/assets/great-gatsby.webp";
 import book_cover_1984 from "@/assets/1984.webp";
@@ -95,22 +94,41 @@ export default function LoggedInHomepage() {
     rating: 4,
   };
 
+  const handleNewList = useCallback(() => {
+    console.log("Creating new list");
+    // Example: openNewListModal();
+  }, []);
+
+  const handleSelectList = useCallback(
+    (list: { name: string; icon: any; count: number }) => {
+      console.log("Selecting list", list.name);
+      // Example: navigateToList(list.name);
+    },
+    [],
+  );
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header userAvatar={userAvatar} />
 
-      <main className="flex-grow container mx-auto py-8 px-4 flex flex-col lg:flex-row gap-8">
-        <div className="lg:w-2/3 space-y-8">
-          <ReadingActivity currentlyReading={currentlyReading} />
-          <CommunityFeed communityFeed={communityFeed} />
-        </div>
+      <div>
+        <main className="flex-grow container mx-auto py-8 px-4 flex flex-col lg:flex-row gap-8">
+          <div className="lg:w-2/3 space-y-8">
+            <ReadingActivity currentlyReading={currentlyReading} />
+            <CommunityFeed communityFeed={communityFeed} />
+          </div>
 
-        <aside className="lg:w-1/3 space-y-8">
-          <ReadingLists readingLists={readingLists} />
-          <RecommendedBooks recommendedBooks={recommendedBooks} />
-          <CommunityChallenge />
-        </aside>
-      </main>
+          <aside className="lg:w-1/3 space-y-8">
+            <ReadingLists
+              readingLists={readingLists}
+              onNewList={handleNewList}
+              onSelectList={handleSelectList}
+            />
+            <RecommendedBooks recommendedBooks={recommendedBooks} />
+            <CommunityChallenge />
+          </aside>
+        </main>
+      </div>
 
       <Footer />
     </div>

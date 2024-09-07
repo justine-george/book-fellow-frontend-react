@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, Users, List, Star, ArrowRight } from "lucide-react";
+import { Activity, BookOpen, BookOpenText, UsersRound, List, Star, ArrowRight, ListPlus, ListCollapse } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function LandingPage() {
@@ -99,22 +99,22 @@ export default function LandingPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
               {[
                 {
-                  icon: <BookOpen className="w-16 h-16" />,
+                  icon: <BookOpenText className="w-16 h-16" />,
                   title: "Detailed Reviews",
                   description: "Write and read in-depth book reviews",
                 },
                 {
-                  icon: <Users className="w-16 h-16" />,
+                  icon: <UsersRound className="w-16 h-16" />,
                   title: "Community",
                   description: "Connect with other book enthusiasts",
                 },
                 {
-                  icon: <List className="w-16 h-16" />,
+                  icon: <ListCollapse className="w-16 h-16" />,
                   title: "Reading Lists",
                   description: "Create and share personalized reading lists",
                 },
                 {
-                  icon: <Star className="w-16 h-16" />,
+                  icon: <Activity className="w-16 h-16" />,
                   title: "Activity Tracking",
                   description: "Follow friends' reading activities",
                 },
