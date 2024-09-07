@@ -1,5 +1,6 @@
 import { useMemo, useCallback } from "react";
 import { BookOpen, Heart, Users } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 // Import components
 import { Header } from "@/components/layout/Header";
@@ -109,6 +110,36 @@ export default function LoggedInHomepage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <Helmet>
+        <title>Book Fellow: Home</title>
+        <meta
+          name="description"
+          content="Book Fellow is a platform for book lovers to connect, share reviews, and discover new books."
+        />
+        <meta
+          name="keywords"
+          content="book, fellow, book lovers, book reviews, book discovery, reading lists, book community"
+        />
+        <meta name="author" content="Book Fellow" />
+        <meta property="og:title" content="Book Fellow: Home" />
+        <meta
+          property="og:description"
+          content="Book Fellow is a platform for book lovers to connect, share reviews, and discover new books."
+        />
+        <meta
+          property="og:image"
+          content="https://book-fellow-frontend-react.pages.dev/og-image.png"
+        />
+        <meta
+          property="og:url"
+          content="https://book-fellow-frontend-react.pages.dev"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Book Fellow: Home" />
+        <meta property="og:image:type" content="image/png" />
+      </Helmet>
       <Header userAvatar={userAvatar} />
 
       <div>

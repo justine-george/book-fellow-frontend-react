@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, useAnimation, Variants } from "framer-motion";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 import {
   Activity,
@@ -95,6 +96,36 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <Helmet>
+        <title>Book Fellow</title>
+        <meta
+          name="description"
+          content="Book Fellow is a platform for book lovers to connect, share reviews, and discover new books."
+        />
+        <meta
+          name="keywords"
+          content="book, fellow, book lovers, book reviews, book discovery, reading lists, book community"
+        />
+        <meta name="author" content="Book Fellow" />
+        <meta property="og:title" content="Book Fellow" />
+        <meta
+          property="og:description"
+          content="Book Fellow is a platform for book lovers to connect, share reviews, and discover new books."
+        />
+        <meta
+          property="og:image"
+          content="https://book-fellow-frontend-react.pages.dev/og-image.png"
+        />
+        <meta
+          property="og:url"
+          content="https://book-fellow-frontend-react.pages.dev"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Book Fellow" />
+        <meta property="og:image:type" content="image/png" />
+      </Helmet>
       <header className="bg-primary text-primary-foreground py-4 sticky top-0 z-50 shadow-md">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
