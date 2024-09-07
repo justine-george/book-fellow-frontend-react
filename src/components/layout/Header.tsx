@@ -81,15 +81,65 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
           </div>
         </form>
         <nav className="flex items-center space-x-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Notifications"
-            className="text-primary-foreground hover:bg-primary-foreground/10 focus:bg-primary-foreground/10 h-10 w-10 transition-colors duration-200 cursor-pointer"
-          >
-            <Bell className="h-5 w-5" />
-            <span className="sr-only">Notifications</span>
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Notifications"
+                className="text-primary-foreground hover:bg-primary-foreground/10 focus:bg-primary-foreground/10 h-10 w-10 transition-colors duration-200 cursor-pointer"
+              >
+                <Bell className="h-5 w-5" />
+                <span className="sr-only">Notifications</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-80 p-4" align="end">
+              <DropdownMenuLabel className="text-lg font-semibold mb-2">
+                Notifications
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator className="mb-2" />
+              <div className="space-y-4">
+                <DropdownMenuItem className="cursor-pointer flex items-start p-2 hover:bg-accent rounded-md">
+                  <div className="flex-shrink-0 mr-3 mt-1">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-sm">
+                      New friend request
+                    </span>
+                    <span className="text-sm text-muted-foreground">
+                      John Doe sent you a friend request
+                    </span>
+                    <span className="text-xs text-muted-foreground mt-1">
+                      2 hours ago
+                    </span>
+                  </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer flex items-start p-2 hover:bg-accent rounded-md">
+                  <div className="flex-shrink-0 mr-3 mt-1">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-sm">
+                      Book recommendation
+                    </span>
+                    <span className="text-sm text-muted-foreground">
+                      Check out "The Great Gatsby" based on your interests
+                    </span>
+                    <span className="text-xs text-muted-foreground mt-1">
+                      1 day ago
+                    </span>
+                  </div>
+                </DropdownMenuItem>
+              </div>
+              <DropdownMenuSeparator className="my-2" />
+              <DropdownMenuItem className="cursor-pointer text-center">
+                <span className="text-sm text-primary font-semibold">
+                  View all notifications
+                </span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
@@ -105,24 +155,32 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
                 <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer">
-                <User className="mr-2 h-4 w-4" />
-                <span>Profile</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Settings</span>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
+            <DropdownMenuContent className="w-64 p-4" align="end">
+              <DropdownMenuLabel className="text-lg font-semibold mb-2">
+                My Account
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator className="mb-2" />
+              <div className="space-y-2">
+                <DropdownMenuItem className="cursor-pointer flex items-center p-2 hover:bg-accent rounded-md">
+                  <User className="mr-3 h-4 w-4" />
+                  <span className="text-sm">Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer flex items-center p-2 hover:bg-accent rounded-md">
+                  <Settings className="mr-3 h-4 w-4" />
+                  <span className="text-sm">Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer flex items-center p-2 hover:bg-accent rounded-md">
+                  <BookOpen className="mr-3 h-4 w-4" />
+                  <span className="text-sm">My Books</span>
+                </DropdownMenuItem>
+              </div>
+              <DropdownMenuSeparator className="my-2" />
               <DropdownMenuItem
                 onClick={handleLogout}
-                className="cursor-pointer"
+                className="cursor-pointer flex items-center p-2 hover:bg-accent rounded-md text-red-500"
               >
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Log out</span>
+                <LogOut className="mr-3 h-4 w-4" />
+                <span className="text-sm font-semibold">Log out</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
