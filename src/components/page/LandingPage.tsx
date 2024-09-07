@@ -6,6 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion, useAnimation, Variants } from "framer-motion";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { CheckCircle2 } from "lucide-react";
 
 import {
   Activity,
@@ -29,6 +31,7 @@ export default function LandingPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const restOfContentControls = useAnimation();
 
@@ -37,7 +40,8 @@ export default function LandingPage() {
     console.log("Subscribed email:", email);
     // Here you would typically call an API to add the email to a mailing list
     setEmail(""); // Clear the input after submission
-    // Optionally, show a success message to the user
+    setShowAlert(true); // Show the success alert
+    setTimeout(() => setShowAlert(false), 5000); // Hide the alert after 5 seconds
   };
 
   const fadeInDown: Variants = {
@@ -504,6 +508,31 @@ export default function LandingPage() {
           </div>
         </div>
       </motion.footer>
+
+      {showAlert && (
+        <div className="fixed bottom-8 right-8 z-50">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Alert
+              variant="default"
+              className="w-80 border-green-500 bg-green-50 text-green-800 shadow-lg"
+            >
+              <CheckCircle2 className="h-5 w-5 text-green-500 mt-1" />
+              <AlertTitle className="text-lg font-semibold mb-2">
+                Success!
+              </AlertTitle>
+              <AlertDescription className="text-md">
+                You've successfully joined our book club. Check your email for
+                confirmation.
+              </AlertDescription>
+            </Alert>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }
