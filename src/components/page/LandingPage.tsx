@@ -6,8 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion, useAnimation, Variants } from "framer-motion";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { CheckCircle2 } from "lucide-react";
+import { CustomAlert } from "@/components/ui/CustomAlert";
 
 import {
   Activity,
@@ -169,7 +168,7 @@ export default function LandingPage() {
                     <Button
                       variant="secondary"
                       size="sm"
-                      className="font-semibold"
+                      className="font-semibold hover:bg-secondary-foreground hover:text-secondary transition-colors"
                     >
                       Sign Up
                     </Button>
@@ -189,7 +188,7 @@ export default function LandingPage() {
       </header>
 
       {isMenuOpen && (
-        <div className="sm:hidden bg-primary text-primary-foreground py-4">
+        <div className="sm:hidden bg-primary text-primary-foreground py-4 fixed top-[72px] left-0 right-0 z-50 shadow-md">
           <nav className="container mx-auto px-4">
             <ul className="space-y-2">
               <li>
@@ -208,7 +207,7 @@ export default function LandingPage() {
                   <Button
                     variant="secondary"
                     size="sm"
-                    className="w-full font-semibold"
+                    className="w-full font-semibold hover:bg-secondary-foreground hover:text-secondary transition-colors"
                   >
                     Sign Up
                   </Button>
@@ -511,26 +510,11 @@ export default function LandingPage() {
 
       {showAlert && (
         <div className="fixed top-24 right-8 z-50">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Alert
-              variant="default"
-              className="w-80 sm:w-96 border-green-500 bg-green-50 text-green-800 shadow-lg"
-            >
-              <CheckCircle2 className="h-5 w-5 text-green-500 mt-1" />
-              <AlertTitle className="text-lg font-semibold mb-2">
-                Success!
-              </AlertTitle>
-              <AlertDescription className="text-md">
-                You've successfully joined our book club. Check your email for
-                confirmation.
-              </AlertDescription>
-            </Alert>
-          </motion.div>
+          <CustomAlert
+            title="Success!"
+            description="You've successfully joined our book club. Check your email for confirmation."
+            className="border-green-500 bg-green-50 text-green-800"
+          />
         </div>
       )}
     </div>
