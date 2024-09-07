@@ -16,31 +16,48 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <header className="bg-primary text-primary-foreground py-6">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-extrabold">Book Fellow</h1>
+      <header className="bg-primary text-primary-foreground py-6 sticky top-0 z-50 shadow-md">
+        <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+          <div className="flex items-center mb-4 sm:mb-0">
+            <BookOpen className="h-8 w-8 mr-2" />
+            <h1 className="text-3xl font-extrabold">Book Fellow</h1>
+          </div>
           <nav>
-            <ul className="flex items-center space-x-8">
+            <ul className="flex items-center space-x-4 sm:space-x-8">
               <li>
-                <a href="#features" className="text-lg hover:underline">
+                <a
+                  href="#features"
+                  className="text-lg hover:underline font-medium transition-colors duration-200 hover:text-secondary"
+                >
                   Features
                 </a>
               </li>
               <li>
-                <a href="#testimonials" className="text-lg hover:underline">
+                <a
+                  href="#testimonials"
+                  className="text-lg hover:underline font-medium transition-colors duration-200 hover:text-secondary"
+                >
                   Testimonials
                 </a>
               </li>
               <li>
                 <Link to="/login">
-                  <Button variant="outline" size="lg" className="text-lg">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="text-lg font-semibold bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-colors duration-200"
+                  >
                     Log In
                   </Button>
                 </Link>
               </li>
               <li>
                 <Link to="/register">
-                  <Button variant="secondary" size="lg" className="text-lg">
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    className="text-lg font-semibold"
+                  >
                     Sign Up
                   </Button>
                 </Link>
@@ -57,7 +74,9 @@ export default function LandingPage() {
           </div>
           <div className="container mx-auto text-center relative z-10">
             <h2 className="text-6xl font-extrabold mb-6 leading-tight">
-              Connect with Fellow<br />Book Lovers
+              Connect with Fellow
+              <br />
+              Book Lovers
             </h2>
             <p className="text-2xl mb-10 opacity-90 max-w-2xl mx-auto">
               Share reviews, create reading lists, and discover your next
@@ -106,9 +125,7 @@ export default function LandingPage() {
                 >
                   <CardContent className="flex flex-col items-center flex-grow">
                     <div className="mb-6 text-primary">{feature.icon}</div>
-                    <h3 className="text-2xl font-bold mb-4">
-                      {feature.title}
-                    </h3>
+                    <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
                     <p className="text-lg text-muted-foreground">
                       {feature.description}
                     </p>
@@ -119,7 +136,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="testimonials" className="py-24 bg-muted">
+        <section id="testimonials" className="py-24 bg-secondary/10">
           <div className="container mx-auto">
             <h2 className="text-4xl font-bold text-center mb-16">
               What Our Users Say
@@ -142,10 +159,15 @@ export default function LandingPage() {
                     "I love sharing my reading lists and seeing what my friends are reading. It's like a book club that never ends!",
                 },
               ].map((testimonial, index) => (
-                <Card key={index} className="p-8 hover:shadow-lg transition-shadow duration-300">
+                <Card
+                  key={index}
+                  className="p-8 hover:shadow-lg transition-shadow duration-300"
+                >
                   <CardContent>
                     <p className="text-xl mb-6 italic">"{testimonial.quote}"</p>
-                    <p className="text-lg font-semibold">- {testimonial.name}</p>
+                    <p className="text-lg font-semibold">
+                      - {testimonial.name}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
@@ -159,7 +181,8 @@ export default function LandingPage() {
               Join Our Community of Book Lovers
             </h2>
             <p className="text-xl mb-10 max-w-2xl mx-auto">
-              Sign up now and start sharing your literary journey with fellow book enthusiasts!
+              Sign up now and start sharing your literary journey with fellow
+              book enthusiasts!
             </p>
             <form
               onSubmit={handleSubmit}
@@ -173,7 +196,12 @@ export default function LandingPage() {
                 className="mr-4 bg-primary-foreground text-primary text-lg py-6"
                 required
               />
-              <Button type="submit" variant="secondary" size="lg" className="text-lg px-8">
+              <Button
+                type="submit"
+                variant="secondary"
+                size="lg"
+                className="text-lg px-8"
+              >
                 Sign Up
               </Button>
             </form>
@@ -183,7 +211,9 @@ export default function LandingPage() {
 
       <footer className="bg-primary text-primary-foreground py-10">
         <div className="container mx-auto text-center">
-          <p className="text-lg">&copy; 2024 Book Fellow. All rights reserved.</p>
+          <p className="text-lg">
+            &copy; 2024 Book Fellow. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>

@@ -17,18 +17,13 @@ import {
   ChevronDown,
   User,
   Settings,
+  BookOpen,
   LogOut,
 } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
 
-export const Header = ({
-  logoImage,
-  userAvatar,
-}: {
-  logoImage: string;
-  userAvatar: string;
-}) => {
+export const Header = ({ userAvatar }: { userAvatar: string }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
@@ -49,12 +44,11 @@ export const Header = ({
   return (
     <header className="bg-slate-900 text-primary-foreground py-4 shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center px-4">
-        <div className="flex items-center cursor-pointer" onClick={handleLogoClick}>
-          <img
-            src={logoImage}
-            alt="Book Fellow Logo"
-            className="h-12 w-12 mr-2 filter invert"
-          />
+        <div
+          className="flex items-center cursor-pointer"
+          onClick={handleLogoClick}
+        >
+          <BookOpen className="h-8 w-8 mr-2" />
           <h1 className="text-2xl font-bold hidden md:block">Book Fellow</h1>
         </div>
         <form

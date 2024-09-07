@@ -20,7 +20,9 @@ export const ReadingActivity = ({
   return (
     <Card className="shadow-md hover:shadow-lg transition-shadow duration-200">
       <CardHeader className="pb-6">
-        <CardTitle className="text-2xl font-bold">Your Reading Activity</CardTitle>
+        <CardTitle className="text-2xl font-bold">
+          Your Reading Activity
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
@@ -49,9 +51,7 @@ export const ReadingActivity = ({
                   }`}
                 />
               ))}
-              <span className="ml-3 text-lg font-medium">
-                Your rating
-              </span>
+              <span className="ml-3 text-lg font-medium">Your rating</span>
             </div>
             <div className="space-y-2">
               <div className="flex justify-between items-center text-lg">
@@ -68,7 +68,9 @@ export const ReadingActivity = ({
             </div>
             <div className="flex items-center text-lg">
               <Clock className="h-5 w-5 mr-2" />
-              <span>Time spent: <strong>{currentlyReading.timeSpent}</strong></span>
+              <span>
+                Time spent: <strong>{currentlyReading.timeSpent}</strong>
+              </span>
             </div>
           </div>
         </div>
