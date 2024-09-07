@@ -34,8 +34,10 @@ export default function LandingPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submitted email:", email);
-    setEmail("");
+    console.log("Subscribed email:", email);
+    // Here you would typically call an API to add the email to a mailing list
+    setEmail(""); // Clear the input after submission
+    // Optionally, show a success message to the user
   };
 
   const fadeInDown: Variants = {
@@ -347,7 +349,7 @@ export default function LandingPage() {
 
           <motion.section
             id="testimonials"
-            className="py-12 sm:py-16 bg-secondary/10"
+            className="py-6 sm:py-6 bg-secondary/10"
           >
             <div className="container mx-auto px-4">
               <motion.h2
@@ -395,20 +397,19 @@ export default function LandingPage() {
             </div>
           </motion.section>
 
-          <motion.section className="py-12 sm:py-16 bg-secondary/10">
+          <motion.section className="py-16 sm:py-16 bg-secondary/10">
             <div className="container mx-auto text-center px-4">
               <motion.h2
-                className="text-4xl font-bold mb-6"
+                className="text-4xl font-bold mb-12"
                 variants={fadeInDown}
               >
-                Join Our Community of Book Lovers
+                Join Our Community
               </motion.h2>
               <motion.p
                 className="text-xl mb-10 max-w-2xl mx-auto text-muted-foreground"
                 variants={fadeInDown}
               >
-                Sign up now and start sharing your literary journey with fellow
-                book enthusiasts!
+                Get weekly book recommendations, reading challenges, and literary insights delivered straight to your inbox!
               </motion.p>
               <motion.div variants={fadeInDown}>
                 <Card className="max-w-md mx-auto">
@@ -417,7 +418,7 @@ export default function LandingPage() {
                       <div className="space-y-2">
                         <Input
                           type="email"
-                          placeholder="Enter your email"
+                          placeholder="Your email address"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           className="text-lg py-6 cursor-text"
@@ -429,18 +430,17 @@ export default function LandingPage() {
                         size="lg"
                         className="w-full text-lg cursor-pointer"
                       >
-                        Sign Up
+                        Join the Club
                       </Button>
                     </form>
                   </CardContent>
                 </Card>
               </motion.div>
               <motion.p
-                className="mt-6 text-sm text-muted-foreground"
+                className="mt-8 text-sm text-muted-foreground"
                 variants={fadeInDown}
               >
-                By signing up, you agree to our Terms of Service and Privacy
-                Policy.
+                By joining, you'll receive our weekly literary digest. Don't worry, we respect your inbox and you can unsubscribe anytime.
               </motion.p>
             </div>
           </motion.section>

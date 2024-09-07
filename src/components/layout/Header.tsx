@@ -22,18 +22,22 @@ import {
 } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { logout } from '@/store/authSlice';
 
 export const Header = ({ userAvatar }: { userAvatar: string }) => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [searchQuery, setSearchQuery] = useState("");
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Search query:", searchQuery);
   };
 
   const handleLogout = () => {
-    navigate("/");
+    dispatch(logout());
+    navigate('/');
   };
 
   const handleLogoClick = () => {
@@ -113,10 +117,7 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
                 <span>Settings</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={handleLogout}
-                className="cursor-pointer"
-              >
+              <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>
               </DropdownMenuItem>
