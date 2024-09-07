@@ -337,10 +337,10 @@ export default function LandingPage() {
                     <Card className="hover:shadow-md transition-shadow duration-300 h-full">
                       <CardContent className="px-6 py-8 flex flex-col h-full">
                         <div className="mb-3">{feature.icon}</div>
-                        <h3 className="text-lg font-bold mb-2">
+                        <h3 className="text-xl font-bold mb-2">
                           {feature.title}
                         </h3>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-base text-muted-foreground">
                           {feature.description}
                         </p>
                       </CardContent>
@@ -384,10 +384,10 @@ export default function LandingPage() {
                   },
                 ].map((testimonial, index) => (
                   <motion.div key={index} variants={fadeInDown}>
-                    <Card className="hover:shadow-md transition-shadow duration-300 h-64 flex flex-col">
+                    <Card className="hover:shadow-md transition-shadow duration-300 h-72 flex flex-col">
                       <CardContent className="p-6 flex flex-col h-full">
                         <Quote className="w-10 h-10 text-primary mb-4 flex-shrink-0" />
-                        <p className="text-lg flex-grow mb-4 overflow-y-auto">
+                        <p className="text-base flex-grow mb-4 overflow-y-auto">
                           {testimonial.quote}
                         </p>
                         <p className="text-base font-semibold text-primary flex-shrink-0">
