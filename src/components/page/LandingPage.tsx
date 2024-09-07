@@ -324,7 +324,7 @@ export default function LandingPage() {
                   {
                     icon: <ListCollapse className="w-8 h-8 text-primary" />,
                     title: "Reading Lists",
-                    description: "Create and share personalized reading lists",
+                    description: "Create and share reading lists",
                   },
                   {
                     icon: <Activity className="w-8 h-8 text-primary" />,
@@ -383,7 +383,7 @@ export default function LandingPage() {
                   },
                 ].map((testimonial, index) => (
                   <motion.div key={index} variants={fadeInDown}>
-                    <Card className="hover:shadow-md transition-shadow duration-300 h-72 flex flex-col">
+                    <Card className="hover:shadow-md transition-shadow duration-300 h-52 sm:h-52 md:h-72 lg:h-64 xl:h-56 flex flex-col">
                       <CardContent className="p-6 flex flex-col h-full">
                         <Quote className="w-10 h-10 text-primary mb-4 flex-shrink-0" />
                         <p className="text-base flex-grow mb-4 overflow-y-auto">
@@ -441,11 +441,11 @@ export default function LandingPage() {
                 </Card>
               </motion.div>
               <motion.p
-                className="mt-8 text-sm text-muted-foreground"
+                className="mt-12 text-sm text-muted-foreground"
                 variants={fadeInDown}
               >
-                By joining, you'll receive our weekly literary digest. Don't
-                worry, we respect your inbox and you can unsubscribe anytime.
+                Subscribe for weekly reading recommendations. Your inbox is safe
+                with us, and you can opt-out at any time.
               </motion.p>
             </div>
           </motion.section>
