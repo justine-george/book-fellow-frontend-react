@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, Variants } from "framer-motion";
 import { useEffect } from "react";
 
 import {
@@ -35,28 +35,30 @@ export default function LandingPage() {
     setEmail("");
   };
 
-  const fadeInDown = {
-    initial: { opacity: 0, y: -20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, ease: "easeOut" },
+  const fadeInDown: Variants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
-  const fadeIn = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    transition: { duration: 0.5, ease: "easeOut" },
+  const fadeIn: Variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
   };
 
-  const staggerChildren = {
-    animate: {
+  const staggerChildren: Variants = {
+    visible: {
       transition: {
         staggerChildren: 0,
       },
     },
   };
 
-  const heroStagger = {
-    animate: {
+  const heroStagger: Variants = {
+    visible: {
       transition: {
         staggerChildren: 0.5,
         when: "beforeChildren",
@@ -65,22 +67,28 @@ export default function LandingPage() {
     },
   };
 
-  const heroFadeIn = {
-    initial: { opacity: 0, y: -20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: "easeOut" },
+  const heroFadeIn: Variants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
-  const restOfContentFadeIn = {
-    initial: { opacity: 0, y: -20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: "easeOut" },
+  const restOfContentFadeIn: Variants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
   useEffect(() => {
     const sequence = async () => {
       await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for hero animations
-      await restOfContentControls.start("animate");
+      await restOfContentControls.start("visible");
     };
     sequence();
   }, [restOfContentControls]);
@@ -167,8 +175,8 @@ export default function LandingPage() {
       <main className="flex-grow">
         <motion.section
           className="bg-primary text-primary-foreground py-32 relative overflow-hidden"
-          initial="initial"
-          animate="animate"
+          initial="hidden"
+          animate="visible"
           variants={heroStagger}
         >
           <div className="absolute inset-0">
@@ -185,12 +193,12 @@ export default function LandingPage() {
                     alt={`Book Cover ${index + 1}`}
                     className={`h-full object-cover opacity-40 ${index > 0 ? "ml-[-50px]" : ""}`}
                     variants={{
-                      initial: {
+                      hidden: {
                         opacity: 0,
                         [index % 2 === 0 ? "x" : "y"]:
                           index % 2 === 0 ? -50 : 50,
                       },
-                      animate: {
+                      visible: {
                         opacity: 0.4,
                         [index % 2 === 0 ? "x" : "y"]: 0,
                       },
@@ -237,7 +245,7 @@ export default function LandingPage() {
         </motion.section>
 
         <motion.div
-          initial="initial"
+          initial="hidden"
           animate={restOfContentControls}
           variants={restOfContentFadeIn}
         >
@@ -400,8 +408,9 @@ export default function LandingPage() {
 
       <motion.footer
         className="bg-background text-foreground py-8 border-t"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
         transition={{ duration: 0.3, delay: 0.5 }}
       >
         <div className="container mx-auto px-4">
