@@ -32,6 +32,26 @@ export default function LandingPage() {
     setEmail("");
   };
 
+  const fadeInDown = {
+    initial: { opacity: 0, y: -20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 5, ease: "easeInOut", delay: 0.5 },
+  };
+
+  const fadeIn = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 5, ease: "easeInOut", delay: 0.5 },
+  };
+
+  const staggerChildren = {
+    animate: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <header className="bg-primary text-primary-foreground py-4 sticky top-0 z-50 shadow-md">
@@ -112,129 +132,153 @@ export default function LandingPage() {
       )}
 
       <main className="flex-grow">
-        <section className="bg-primary text-primary-foreground py-32 relative overflow-hidden">
+        <motion.section
+          className="bg-primary text-primary-foreground py-32 relative overflow-hidden"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeIn}
+        >
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/80 z-10"></div>
-            <div className="absolute inset-0 flex justify-center items-center">
-              <motion.img
-                src={bookCover1}
-                alt="Book Cover 1"
-                className="h-full object-cover opacity-40"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 0.4, x: 0 }}
-                transition={{ duration: 1, delay: 0.2 }}
-              />
-              <motion.img
-                src={bookCover2}
-                alt="Book Cover 2"
-                className="h-full object-cover opacity-40 ml-[-50px]"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 0.4, y: 0 }}
-                transition={{ duration: 1, delay: 0.4 }}
-              />
-              <motion.img
-                src={bookCover3}
-                alt="Book Cover 3"
-                className="h-full object-cover opacity-40 ml-[-50px]"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 0.4, x: 0 }}
-                transition={{ duration: 1, delay: 0.6 }}
-              />
-              <motion.img
-                src={bookCover4}
-                alt="Book Cover 4"
-                className="h-full object-cover opacity-40 ml-[-50px]"
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 0.4, y: 0 }}
-                transition={{ duration: 1, delay: 0.8 }}
-              />
-              <motion.img
-                src={bookCover5}
-                alt="Book Cover 5"
-                className="h-full object-cover opacity-40 ml-[-50px]"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 0.4, x: 0 }}
-                transition={{ duration: 1, delay: 1 }}
-              />
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/90 to-primary/70 z-10"></div>
+            <motion.div
+              className="absolute inset-0 flex justify-center items-center"
+              variants={staggerChildren}
+            >
+              {[bookCover1, bookCover2, bookCover3, bookCover4, bookCover5].map(
+                (cover, index) => (
+                  <motion.img
+                    key={index}
+                    src={cover}
+                    alt={`Book Cover ${index + 1}`}
+                    className={`h-full object-cover opacity-40 ${index > 0 ? "ml-[-50px]" : ""}`}
+                    variants={{
+                      initial: {
+                        opacity: 0,
+                        [index % 2 === 0 ? "x" : "y"]:
+                          index % 2 === 0 ? -50 : 50,
+                      },
+                      animate: {
+                        opacity: 0.4,
+                        [index % 2 === 0 ? "x" : "y"]: 0,
+                      },
+                    }}
+                    transition={{ duration: 1.2, delay: index * 0.1 }}
+                  />
+                ),
+              )}
+            </motion.div>
           </div>
           <motion.div
             className="container mx-auto text-center relative z-20 px-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={staggerChildren}
           >
-            <h2 className="text-6xl font-extrabold mb-6 leading-tight">
+            <motion.h2
+              className="text-6xl font-extrabold mb-6 leading-tight"
+              variants={fadeInDown}
+            >
               Connect with Fellow
               <br />
               Book Lovers
-            </h2>
-            <p className="text-2xl mb-10 opacity-90 max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p
+              className="text-2xl mb-10 opacity-90 max-w-2xl mx-auto"
+              variants={fadeInDown}
+            >
               Share reviews, create reading lists, and discover your next
               favorite book in our vibrant community.
-            </p>
-            <Link to="/home">
-              <Button
-                size="lg"
-                className="text-xl bg-white text-primary hover:bg-primary-foreground hover:text-primary transition-colors duration-300 px-8 py-6"
-              >
-                Get Started <ArrowRight className="ml-2 h-6 w-6" />
-              </Button>
-            </Link>
+            </motion.p>
+            <motion.div variants={fadeInDown}>
+              <Link to="/home">
+                <Button
+                  size="lg"
+                  className="text-xl bg-white text-primary hover:bg-primary-foreground hover:text-primary transition-colors duration-300 px-8 py-6"
+                >
+                  Get Started <ArrowRight className="ml-2 h-6 w-6" />
+                </Button>
+              </Link>
+            </motion.div>
           </motion.div>
-        </section>
+        </motion.section>
 
-        <section id="features" className="py-12 sm:py-16 bg-background">
+        <motion.section
+          id="features"
+          className="py-12 sm:py-16 bg-background"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeIn}
+        >
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-12 sm:mb-16">
+            <motion.h2
+              className="text-4xl font-bold text-center mb-12 sm:mb-16"
+              variants={fadeInDown}
+            >
               Features
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            </motion.h2>
+            <motion.div
+              className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6"
+              variants={staggerChildren}
+            >
               {[
                 {
-                  icon: <BookOpenText className="w-10 h-10 text-primary" />,
+                  icon: <BookOpenText className="w-8 h-8 text-primary" />,
                   title: "Detailed Reviews",
                   description: "Write and read in-depth book reviews",
                 },
                 {
-                  icon: <UsersRound className="w-10 h-10 text-primary" />,
+                  icon: <UsersRound className="w-8 h-8 text-primary" />,
                   title: "Community",
                   description: "Connect with other book enthusiasts",
                 },
                 {
-                  icon: <ListCollapse className="w-10 h-10 text-primary" />,
+                  icon: <ListCollapse className="w-8 h-8 text-primary" />,
                   title: "Reading Lists",
                   description: "Create and share personalized reading lists",
                 },
                 {
-                  icon: <Activity className="w-10 h-10 text-primary" />,
+                  icon: <Activity className="w-8 h-8 text-primary" />,
                   title: "Activity Tracking",
                   description: "Follow friends' reading activities",
                 },
               ].map((feature, index) => (
-                <Card
-                  key={index}
-                  className="hover:shadow-md transition-shadow duration-300"
-                >
-                  <CardContent className="p-6">
-                    <div className="mb-4">{feature.icon}</div>
-                    <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground">
-                      {feature.description}
-                    </p>
-                  </CardContent>
-                </Card>
+                <motion.div key={index} variants={fadeInDown}>
+                  <Card className="hover:shadow-md transition-shadow duration-300 h-full">
+                    <CardContent className="px-6 py-8 flex flex-col h-full">
+                      <div className="mb-3">{feature.icon}</div>
+                      <h3 className="text-lg font-bold mb-2">
+                        {feature.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {feature.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
-        <section id="testimonials" className="py-12 sm:py-16 bg-secondary/10">
+        <motion.section
+          id="testimonials"
+          className="py-12 sm:py-16 bg-secondary/10"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeIn}
+        >
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-12 sm:mb-16">
+            <motion.h2
+              className="text-4xl font-bold text-center mb-12 sm:mb-16"
+              variants={fadeInDown}
+            >
               What Our Users Say
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            </motion.h2>
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-10"
+              variants={staggerChildren}
+            >
               {[
                 {
                   name: "Alice Johnson",
@@ -252,66 +296,87 @@ export default function LandingPage() {
                     "I love sharing my reading lists and seeing what my friends are reading. It's like a book club that never ends!",
                 },
               ].map((testimonial, index) => (
-                <Card
-                  key={index}
-                  className="hover:shadow-md transition-shadow duration-300"
-                >
-                  <CardContent className="p-6 flex flex-col h-full">
-                    <Quote className="w-10 h-10 text-primary mb-4" />
-                    <p className="text-lg flex-grow mb-4">
-                      "{testimonial.quote}"
-                    </p>
-                    <p className="text-base font-semibold text-primary">
-                      - {testimonial.name}
-                    </p>
-                  </CardContent>
-                </Card>
+                <motion.div key={index} variants={fadeInDown}>
+                  <Card className="hover:shadow-md transition-shadow duration-300 h-64 flex flex-col">
+                    <CardContent className="p-6 flex flex-col h-full">
+                      <Quote className="w-10 h-10 text-primary mb-4 flex-shrink-0" />
+                      <p className="text-lg flex-grow mb-4 overflow-y-auto">
+                        {testimonial.quote}
+                      </p>
+                      <p className="text-base font-semibold text-primary flex-shrink-0">
+                        - {testimonial.name}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
-        <section className="py-12 sm:py-16 bg-secondary/10">
+        <motion.section
+          className="py-12 sm:py-16 bg-secondary/10"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeIn}
+        >
           <div className="container mx-auto text-center px-4">
-            <h2 className="text-4xl font-bold mb-6">
+            <motion.h2
+              className="text-4xl font-bold mb-6"
+              variants={fadeInDown}
+            >
               Join Our Community of Book Lovers
-            </h2>
-            <p className="text-xl mb-10 max-w-2xl mx-auto text-muted-foreground">
+            </motion.h2>
+            <motion.p
+              className="text-xl mb-10 max-w-2xl mx-auto text-muted-foreground"
+              variants={fadeInDown}
+            >
               Sign up now and start sharing your literary journey with fellow
               book enthusiasts!
-            </p>
-            <Card className="max-w-md mx-auto">
-              <CardContent className="pt-6">
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Input
-                      type="email"
-                      placeholder="Enter your email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="text-lg py-6 cursor-text"
-                      required
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full text-lg cursor-pointer"
-                  >
-                    Sign Up
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-            <p className="mt-6 text-sm text-muted-foreground">
+            </motion.p>
+            <motion.div variants={fadeInDown}>
+              <Card className="max-w-md mx-auto">
+                <CardContent className="pt-6">
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="space-y-2">
+                      <Input
+                        type="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="text-lg py-6 cursor-text"
+                        required
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full text-lg cursor-pointer"
+                    >
+                      Sign Up
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.p
+              className="mt-6 text-sm text-muted-foreground"
+              variants={fadeInDown}
+            >
               By signing up, you agree to our Terms of Service and Privacy
               Policy.
-            </p>
+            </motion.p>
           </div>
-        </section>
+        </motion.section>
       </main>
 
-      <footer className="bg-background text-foreground py-8 border-t">
+      <motion.footer
+        className="bg-background text-foreground py-8 border-t"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3, delay: 0.5 }}
+      >
         <div className="container mx-auto px-4">
           <div className="flex flex-col sm:flex-row justify-between items-center">
             <div className="flex items-center mb-4 sm:mb-0">
@@ -359,7 +424,7 @@ export default function LandingPage() {
             <p>&copy; 2024 Book Fellow. All rights reserved.</p>
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   );
 }
