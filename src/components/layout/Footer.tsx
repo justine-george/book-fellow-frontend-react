@@ -11,10 +11,26 @@ export const Footer = () => {
           </div>
           <nav>
             <ul className="flex flex-wrap justify-center sm:justify-end space-x-6">
-              <li><a href="#" className="hover:text-primary transition-colors">About</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Privacy</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Terms</a></li>
+              <li>
+                <a href="#" className="hover:text-primary transition-colors">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-primary transition-colors">
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-primary transition-colors">
+                  Privacy
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-primary transition-colors">
+                  Terms
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
