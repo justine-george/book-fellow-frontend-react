@@ -510,7 +510,7 @@ export default function LandingPage() {
       </motion.footer>
 
       {showAlert && (
-        <div className="fixed bottom-8 right-8 z-50">
+        <div className="fixed top-24 right-8 z-50">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -519,7 +519,7 @@ export default function LandingPage() {
           >
             <Alert
               variant="default"
-              className="w-80 border-green-500 bg-green-50 text-green-800 shadow-lg"
+              className="w-80 sm:w-96 border-green-500 bg-green-50 text-green-800 shadow-lg"
             >
               <CheckCircle2 className="h-5 w-5 text-green-500 mt-1" />
               <AlertTitle className="text-lg font-semibold mb-2">
