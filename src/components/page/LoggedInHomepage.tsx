@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useMemo, useCallback } from "react";
 import { BookOpen, Heart, Users } from "lucide-react";
 import { Helmet } from "react-helmet-async";
@@ -25,6 +26,21 @@ function getRandomColor() {
   const hue = Math.floor(Math.random() * 360);
   return `hsl(${hue}, 40%, 75%)`;
 }
+
+// Animation variants
+const fadeInUp = {
+  initial: { opacity: 0, y: -10 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.4, ease: "easeOut" },
+};
+
+const staggerChildren = {
+  animate: {
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
 
 export default function LoggedInHomepage() {
   const communityFeed = useMemo(
@@ -109,7 +125,12 @@ export default function LoggedInHomepage() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <motion.div
+      className="min-h-screen flex flex-col bg-background"
+      initial="initial"
+      animate="animate"
+      variants={staggerChildren}
+    >
       <Helmet>
         <title>Book Fellow: Home</title>
         <meta
@@ -142,26 +163,39 @@ export default function LoggedInHomepage() {
       </Helmet>
       <Header userAvatar={userAvatar} />
 
-      <div>
+      <motion.div variants={fadeInUp}>
         <main className="flex-grow container mx-auto py-8 px-4 flex flex-col lg:flex-row gap-8">
-          <div className="lg:w-2/3 space-y-8">
-            <ReadingActivity currentlyReading={currentlyReading} />
-            <CommunityFeed communityFeed={communityFeed} />
-          </div>
+          <motion.div className="lg:w-2/3 space-y-8" variants={staggerChildren}>
+            <motion.div variants={fadeInUp}>
+              <ReadingActivity currentlyReading={currentlyReading} />
+            </motion.div>
+            <motion.div variants={fadeInUp}>
+              <CommunityFeed communityFeed={communityFeed} />
+            </motion.div>
+          </motion.div>
 
-          <aside className="lg:w-1/3 space-y-8">
-            <ReadingLists
-              readingLists={readingLists}
-              onNewList={handleNewList}
-              onSelectList={handleSelectList}
-            />
-            <RecommendedBooks recommendedBooks={recommendedBooks} />
-            <CommunityChallenge />
-          </aside>
+          <motion.aside
+            className="lg:w-1/3 space-y-8"
+            variants={staggerChildren}
+          >
+            <motion.div variants={fadeInUp}>
+              <ReadingLists
+                readingLists={readingLists}
+                onNewList={handleNewList}
+                onSelectList={handleSelectList}
+              />
+            </motion.div>
+            <motion.div variants={fadeInUp}>
+              <RecommendedBooks recommendedBooks={recommendedBooks} />
+            </motion.div>
+            <motion.div variants={fadeInUp}>
+              <CommunityChallenge />
+            </motion.div>
+          </motion.aside>
         </main>
-      </div>
+      </motion.div>
 
       <Footer />
-    </div>
+    </motion.div>
   );
 }
