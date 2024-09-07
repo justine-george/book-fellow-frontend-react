@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { useMemo, useCallback, useState } from "react";
+import { useMemo, useCallback, useState, useEffect } from "react";
 import { BookOpen, Heart, Users } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import Confetti from "react-confetti";
 
 // Import components
 import { Header } from "@/components/layout/Header";
@@ -112,6 +113,8 @@ export default function LoggedInHomepage() {
     rating: 4,
   });
 
+  const [showConfetti, setShowConfetti] = useState(false);
+
   const handleNewList = useCallback(() => {
     console.log("Creating new list");
     // Example: openNewListModal();
@@ -125,14 +128,34 @@ export default function LoggedInHomepage() {
     [],
   );
 
-  const handleProgressUpdate = useCallback((pages: number) => {
-    console.log("Updating progress", pages);
-    setCurrentlyReading((prev) => ({
-      ...prev,
-      pagesRead: pages,
-      progress: Math.round((pages / prev.totalPages) * 100),
-    }));
-  }, []);
+  const handleProgressUpdate = useCallback(
+    (pages: number) => {
+      console.log("Updating progress", pages);
+      const newProgress = Math.round(
+        (pages / currentlyReading.totalPages) * 100,
+      );
+      setCurrentlyReading((prev) => ({
+        ...prev,
+        pagesRead: pages,
+        progress: newProgress,
+      }));
+
+      if (newProgress === 100) {
+        setShowConfetti(true);
+      }
+    },
+    [currentlyReading.totalPages],
+  );
+
+  useEffect(() => {
+    if (showConfetti) {
+      const timer = setTimeout(() => {
+        setShowConfetti(false);
+      }, 5000); // Stop confetti after 5 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [showConfetti]);
 
   const handleRatingUpdate = useCallback((rating: number) => {
     console.log("Updating rating", rating);
@@ -149,6 +172,7 @@ export default function LoggedInHomepage() {
       animate="animate"
       variants={staggerChildren}
     >
+      {showConfetti && <Confetti />}
       <Helmet>
         <title>Book Fellow: Home</title>
         <meta
