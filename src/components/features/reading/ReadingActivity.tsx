@@ -7,12 +7,26 @@ import { motion } from "framer-motion";
 const fadeIn = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
-  transition: { duration: 0.3, ease: "easeInOut" },
 };
 
-export function ReadingActivity({ currentlyReading }) {
+const transition = { duration: 0.3, ease: "easeInOut" };
+
+export function ReadingActivity({
+  currentlyReading,
+}: {
+  currentlyReading: {
+    title: string;
+    author: string;
+    cover: string;
+    progress: number;
+    pagesRead: number;
+    totalPages: number;
+    timeSpent: string;
+    rating: number;
+  };
+}) {
   return (
-    <motion.div variants={fadeIn}>
+    <motion.div variants={fadeIn} transition={transition}>
       <Card className="shadow-md hover:shadow-lg transition-shadow duration-200">
         <CardHeader className="pb-6">
           <CardTitle className="text-2xl font-bold flex items-center">

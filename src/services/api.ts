@@ -15,6 +15,7 @@ export const login = async (email: string, password: string) => {
 
 export const register = async (email: string, password: string) => {
   // Simulating API call
+  console.log("Registering user:", email, password);
   await new Promise((resolve) => setTimeout(resolve, 1000));
   return { token: "mock_token_67890" };
 };

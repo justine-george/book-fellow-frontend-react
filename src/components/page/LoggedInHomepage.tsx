@@ -31,8 +31,9 @@ function getRandomColor() {
 const fadeInUp = {
   initial: { opacity: 0, y: -10 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.4, ease: "easeOut" },
 };
+
+const transition = { duration: 0.4, ease: "easeOut" };
 
 const staggerChildren = {
   animate: {
@@ -163,13 +164,13 @@ export default function LoggedInHomepage() {
       </Helmet>
       <Header userAvatar={userAvatar} />
 
-      <motion.div variants={fadeInUp}>
+      <motion.div variants={fadeInUp} transition={transition}>
         <main className="flex-grow container mx-auto py-8 px-4 flex flex-col lg:flex-row gap-8">
           <motion.div className="lg:w-2/3 space-y-8" variants={staggerChildren}>
-            <motion.div variants={fadeInUp}>
+            <motion.div variants={fadeInUp} transition={transition}>
               <ReadingActivity currentlyReading={currentlyReading} />
             </motion.div>
-            <motion.div variants={fadeInUp}>
+            <motion.div variants={fadeInUp} transition={transition}>
               <CommunityFeed communityFeed={communityFeed} />
             </motion.div>
           </motion.div>
@@ -178,17 +179,17 @@ export default function LoggedInHomepage() {
             className="lg:w-1/3 space-y-8"
             variants={staggerChildren}
           >
-            <motion.div variants={fadeInUp}>
+            <motion.div variants={fadeInUp} transition={transition}>
               <ReadingLists
                 readingLists={readingLists}
                 onNewList={handleNewList}
                 onSelectList={handleSelectList}
               />
             </motion.div>
-            <motion.div variants={fadeInUp}>
+            <motion.div variants={fadeInUp} transition={transition}>
               <RecommendedBooks recommendedBooks={recommendedBooks} />
             </motion.div>
-            <motion.div variants={fadeInUp}>
+            <motion.div variants={fadeInUp} transition={transition}>
               <CommunityChallenge />
             </motion.div>
           </motion.aside>
