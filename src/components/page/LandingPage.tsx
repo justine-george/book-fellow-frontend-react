@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
 
 import {
   Activity,
@@ -26,6 +27,8 @@ export default function LandingPage() {
   const [email, setEmail] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const restOfContentControls = useAnimation();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Submitted email:", email);
@@ -47,7 +50,7 @@ export default function LandingPage() {
   const staggerChildren = {
     animate: {
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0,
       },
     },
   };
@@ -56,15 +59,31 @@ export default function LandingPage() {
     animate: {
       transition: {
         staggerChildren: 0.5,
+        when: "beforeChildren",
+        delayChildren: 0.5,
       },
     },
   };
 
   const heroFadeIn = {
-    initial: { opacity: 0, y: 20 },
+    initial: { opacity: 0, y: -20 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.8, ease: "easeOut" },
   };
+
+  const restOfContentFadeIn = {
+    initial: { opacity: 0, y: -20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, ease: "easeOut" },
+  };
+
+  useEffect(() => {
+    const sequence = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for hero animations
+      await restOfContentControls.start("animate");
+    };
+    sequence();
+  }, [restOfContentControls]);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -190,16 +209,10 @@ export default function LandingPage() {
               className="text-6xl font-extrabold mb-6 leading-tight"
               variants={heroFadeIn}
             >
-              <motion.span
-                className="block"
-                variants={heroFadeIn}
-              >
+              <motion.span className="block" variants={heroFadeIn}>
                 Connect with Fellow
               </motion.span>
-              <motion.span
-                className="block"
-                variants={heroFadeIn}
-              >
+              <motion.span className="block" variants={heroFadeIn}>
                 Book Lovers
               </motion.span>
             </motion.h2>
@@ -225,13 +238,12 @@ export default function LandingPage() {
 
         <motion.div
           initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
+          animate={restOfContentControls}
+          variants={restOfContentFadeIn}
         >
           <motion.section
             id="features"
             className="py-12 sm:py-16 bg-background"
-            variants={fadeIn}
           >
             <div className="container mx-auto px-4">
               <motion.h2
@@ -287,7 +299,6 @@ export default function LandingPage() {
           <motion.section
             id="testimonials"
             className="py-12 sm:py-16 bg-secondary/10"
-            variants={fadeIn}
           >
             <div className="container mx-auto px-4">
               <motion.h2
@@ -335,10 +346,7 @@ export default function LandingPage() {
             </div>
           </motion.section>
 
-          <motion.section
-            className="py-12 sm:py-16 bg-secondary/10"
-            variants={fadeIn}
-          >
+          <motion.section className="py-12 sm:py-16 bg-secondary/10">
             <div className="container mx-auto text-center px-4">
               <motion.h2
                 className="text-4xl font-bold mb-6"
