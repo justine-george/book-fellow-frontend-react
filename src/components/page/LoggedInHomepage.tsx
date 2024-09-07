@@ -134,6 +134,14 @@ export default function LoggedInHomepage() {
     }));
   }, []);
 
+  const handleRatingUpdate = useCallback((rating: number) => {
+    console.log("Updating rating", rating);
+    setCurrentlyReading((prev) => ({
+      ...prev,
+      rating: rating,
+    }));
+  }, []);
+
   return (
     <motion.div
       className="min-h-screen flex flex-col bg-background"
@@ -180,6 +188,7 @@ export default function LoggedInHomepage() {
               <ReadingActivity
                 currentlyReading={currentlyReading}
                 onProgressUpdate={handleProgressUpdate}
+                onRatingUpdate={handleRatingUpdate}
               />
             </motion.div>
             <motion.div variants={fadeInUp} transition={transition}>

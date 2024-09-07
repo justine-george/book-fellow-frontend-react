@@ -121,6 +121,7 @@ function UpdateProgressDialog({
 export function ReadingActivity({
   currentlyReading,
   onProgressUpdate,
+  onRatingUpdate,
 }: {
   currentlyReading: {
     title: string;
@@ -133,12 +134,22 @@ export function ReadingActivity({
     rating: number;
   };
   onProgressUpdate: (pages: number) => void;
+  onRatingUpdate: (rating: number) => void;
 }) {
+  const [hoveredRating, setHoveredRating] = useState(0);
+
   const handleUpdate = useCallback(
     (pages: number) => {
       onProgressUpdate(pages);
     },
     [onProgressUpdate],
+  );
+
+  const handleRatingUpdate = useCallback(
+    (rating: number) => {
+      onRatingUpdate(rating);
+    },
+    [onRatingUpdate],
   );
 
   return (
@@ -167,14 +178,17 @@ export function ReadingActivity({
                 </p>
               </div>
               <div className="flex items-center">
-                {[...Array(5)].map((_, i) => (
+                {[1, 2, 3, 4, 5].map((star) => (
                   <Star
-                    key={i}
-                    className={`h-6 w-6 ${
-                      i < currentlyReading.rating
+                    key={star}
+                    className={`h-6 w-6 cursor-pointer ${
+                      star <= (hoveredRating || currentlyReading.rating)
                         ? "text-yellow-400 fill-current"
                         : "text-gray-300"
                     }`}
+                    onMouseEnter={() => setHoveredRating(star)}
+                    onMouseLeave={() => setHoveredRating(0)}
+                    onClick={() => handleRatingUpdate(star)}
                   />
                 ))}
                 <span className="ml-3 text-lg font-medium">Your rating</span>
