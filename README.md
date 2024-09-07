@@ -1,50 +1,63 @@
-# React + TypeScript + Vite
+# Book Fellow Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is the frontend for Book Fellow, a platform for book lovers to connect, share reviews, and discover new books. It's built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+<!-- <img src="./src/assets/demo-landing-page.gif" alt="Demo" width="600"/> -->
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<a href="https://book-fellow-frontend-react.pages.dev/" target="_blank"><img src="./src/assets/demo-landing-page.gif" width="800"></a>
 
-## Expanding the ESLint configuration
+## Live Demo
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The application is deployed and can be accessed at:
+[https://book-fellow-frontend-react.pages.dev/](https://book-fellow-frontend-react.pages.dev/)
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+- User authentication (login/register)
+- Landing page with features overview
+- Logged-in homepage with personalized content
+- Reading activity tracking
+- Community feed
+- Reading lists
+- Book recommendations
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Tech Stack
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion (for animations)
+- React Router (for routing)
+- Lucide React (for icons)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
-```
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Run the development server:
+   ```
+   npm run dev
+   ```
+
+## Available Scripts
+
+- `npm run dev`: Starts the development server
+- `npm run build`: Builds the app for production
+- `npm run lint`: Runs the linter (Prettier)
+- `npm run preview`: Previews the production build locally
+
+## Deployment
+
+This project is deployed using Cloudflare Pages. Any pushes to the main branch will trigger a new deployment.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
