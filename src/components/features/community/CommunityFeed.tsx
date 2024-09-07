@@ -46,9 +46,13 @@ export const CommunityFeed = ({
               <div className="flex-grow min-w-0">
                 <p className="text-sm font-medium truncate">
                   <span className="font-semibold">{activity.user}</span>{" "}
-                  <span className="text-muted-foreground">{activity.action}</span>
+                  <span className="text-muted-foreground">
+                    {activity.action}
+                  </span>
                 </p>
-                <p className="text-xs text-muted-foreground truncate">"{activity.book}"</p>
+                <p className="text-xs text-muted-foreground truncate">
+                  "{activity.book}"
+                </p>
               </div>
               <img
                 src={activity.bookCover}

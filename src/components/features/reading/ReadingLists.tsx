@@ -57,7 +57,9 @@ export const ReadingLists: React.FC<ReadingListsProps> = ({
                         className: "mr-3 h-5 w-5 text-primary flex-shrink-0",
                         "aria-hidden": "true",
                       })}
-                      <span className="text-sm font-medium truncate">{list.name}</span>
+                      <span className="text-sm font-medium truncate">
+                        {list.name}
+                      </span>
                     </div>
                     <span className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs font-medium ml-2 flex-shrink-0">
                       {list.count}

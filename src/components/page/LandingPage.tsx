@@ -2,7 +2,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Activity, BookOpen, BookOpenText, UsersRound, List, Star, ArrowRight, ListPlus, ListCollapse } from "lucide-react";
+import {
+  Activity,
+  BookOpen,
+  BookOpenText,
+  UsersRound,
+  ArrowRight,
+  ListCollapse,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function LandingPage() {
