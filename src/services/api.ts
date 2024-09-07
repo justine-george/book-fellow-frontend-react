@@ -7,7 +7,7 @@ const api = axios.create({
 export const login = async (email: string, password: string) => {
   // Simulating API call
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  if (email === "user@example.com" && password === "password") {
+  if (email === "user@bookfellow.com" && password === "readingisfun") {
     return { token: "mock_token_12345" };
   }
   throw new Error("Invalid credentials");

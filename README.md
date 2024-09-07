@@ -8,8 +8,13 @@ This project is the frontend for Book Fellow, a platform for book lovers to conn
 
 ## Live Demo
 
-The application is deployed and can be accessed at:
+Experience Book Fellow at:
 [https://book-fellow-frontend-react.pages.dev/](https://book-fellow-frontend-react.pages.dev/)
+
+Demo account:
+
+- Email: user@bookfellow.com
+- Password: readingisfun
 
 ## Features
 
