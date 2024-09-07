@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -25,6 +26,7 @@ import bookCover4 from "@/assets/pride-and-prejudice.jpg";
 import bookCover5 from "@/assets/to-kill-a-mockingbird.webp";
 
 export default function LandingPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -86,6 +88,11 @@ export default function LandingPage() {
     },
   };
 
+  const handleLogoClick = useCallback(() => {
+    navigate("/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [navigate]);
+
   useEffect(() => {
     const sequence = async () => {
       await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for hero animations
@@ -129,7 +136,10 @@ export default function LandingPage() {
       <header className="bg-primary text-primary-foreground py-4 sticky top-0 z-50 shadow-md">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center cursor-pointer">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={handleLogoClick}
+            >
               <BookOpen className="h-8 w-8 mr-2" />
               <h1 className="text-2xl sm:text-3xl font-extrabold">
                 Book Fellow
