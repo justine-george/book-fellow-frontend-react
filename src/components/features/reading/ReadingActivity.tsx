@@ -1,8 +1,20 @@
+import { useState, useCallback } from "react";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { BookOpen, PenTool, Star, Clock, Activity } from "lucide-react";
 import { motion } from "framer-motion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const fadeIn = {
   initial: { opacity: 0 },
@@ -11,8 +23,104 @@ const fadeIn = {
 
 const transition = { duration: 0.3, ease: "easeInOut" };
 
+function UpdateProgressDialog({
+  currentProgress,
+  totalPages,
+  onUpdate,
+}: {
+  currentProgress: number;
+  totalPages: number;
+  onUpdate: (pages: number) => void;
+}) {
+  const [pages, setPages] = useState(currentProgress);
+  const [error, setError] = useState("");
+
+  const handleUpdate = useCallback(() => {
+    if (pages > totalPages) {
+      setError("Pages read cannot exceed total pages");
+      return;
+    }
+    onUpdate(pages);
+  }, [onUpdate, pages, totalPages]);
+
+  const handleQuickSelect = useCallback(
+    (percentage: number) => {
+      const newPages = Math.round((percentage / 100) * totalPages);
+      setPages(newPages);
+      setError("");
+    },
+    [totalPages],
+  );
+
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = Number(e.target.value);
+      setPages(value);
+      setError(
+        value > totalPages ? "Pages read cannot exceed total pages" : "",
+      );
+    },
+    [totalPages],
+  );
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className="flex-grow text-lg py-6">
+          <BookOpen className="mr-3 h-5 w-5" /> Update Progress
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Update Reading Progress</DialogTitle>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="pages" className="text-right">
+              Pages Read
+            </Label>
+            <Input
+              id="pages"
+              type="text"
+              value={pages}
+              onChange={handleInputChange}
+              className="col-span-3"
+            />
+          </div>
+          <div className="flex justify-between">
+            {[25, 50, 75, 100].map((percentage) => (
+              <Button
+                key={percentage}
+                onClick={() => handleQuickSelect(percentage)}
+                variant="outline"
+                size="default"
+              >
+                {percentage}%
+              </Button>
+            ))}
+          </div>
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+        </div>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+              Cancel
+            </Button>
+          </DialogClose>
+          <DialogClose asChild>
+            <Button onClick={handleUpdate} disabled={!!error}>
+              Update Progress
+            </Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 export function ReadingActivity({
   currentlyReading,
+  onProgressUpdate,
 }: {
   currentlyReading: {
     title: string;
@@ -24,7 +132,15 @@ export function ReadingActivity({
     timeSpent: string;
     rating: number;
   };
+  onProgressUpdate: (pages: number) => void;
 }) {
+  const handleUpdate = useCallback(
+    (pages: number) => {
+      onProgressUpdate(pages);
+    },
+    [onProgressUpdate],
+  );
+
   return (
     <motion.div variants={fadeIn} transition={transition}>
       <Card className="shadow-md hover:shadow-lg transition-shadow duration-200">
@@ -85,11 +201,13 @@ export function ReadingActivity({
             </div>
           </div>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mt-8">
-            <Button className="flex-grow text-lg py-6">
-              <BookOpen className="mr-3 h-5 w-5" /> Continue Reading
-            </Button>
+            <UpdateProgressDialog
+              currentProgress={currentlyReading.pagesRead}
+              totalPages={currentlyReading.totalPages}
+              onUpdate={handleUpdate}
+            />
             <Button variant="outline" className="flex-grow text-lg py-6">
-              <PenTool className="mr-3 h-5 w-5" /> Update Rating
+              <PenTool className="mr-3 h-5 w-5" /> Share with Friends
             </Button>
           </div>
         </CardContent>

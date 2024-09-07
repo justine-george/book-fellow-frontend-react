@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useState } from "react";
 import { BookOpen, Heart, Users } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
@@ -101,7 +101,7 @@ export default function LoggedInHomepage() {
     { name: "Book Club Picks", icon: Users, count: 5 },
   ];
 
-  const currentlyReading = {
+  const [currentlyReading, setCurrentlyReading] = useState({
     title: "The Great Gatsby",
     author: "F. Scott Fitzgerald",
     cover: book_cover_great_gatsby,
@@ -110,7 +110,7 @@ export default function LoggedInHomepage() {
     totalPages: 340,
     timeSpent: "5h 23m",
     rating: 4,
-  };
+  });
 
   const handleNewList = useCallback(() => {
     console.log("Creating new list");
@@ -124,6 +124,15 @@ export default function LoggedInHomepage() {
     },
     [],
   );
+
+  const handleProgressUpdate = useCallback((pages: number) => {
+    console.log("Updating progress", pages);
+    setCurrentlyReading((prev) => ({
+      ...prev,
+      pagesRead: pages,
+      progress: Math.round((pages / prev.totalPages) * 100),
+    }));
+  }, []);
 
   return (
     <motion.div
@@ -168,7 +177,10 @@ export default function LoggedInHomepage() {
         <main className="flex-grow container mx-auto py-8 px-4 flex flex-col lg:flex-row gap-8">
           <motion.div className="lg:w-2/3 space-y-8" variants={staggerChildren}>
             <motion.div variants={fadeInUp} transition={transition}>
-              <ReadingActivity currentlyReading={currentlyReading} />
+              <ReadingActivity
+                currentlyReading={currentlyReading}
+                onProgressUpdate={handleProgressUpdate}
+              />
             </motion.div>
             <motion.div variants={fadeInUp} transition={transition}>
               <CommunityFeed communityFeed={communityFeed} />
