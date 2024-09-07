@@ -409,7 +409,8 @@ export default function LandingPage() {
                 className="text-xl mb-10 max-w-2xl mx-auto text-muted-foreground"
                 variants={fadeInDown}
               >
-                Get weekly book recommendations, reading challenges, and literary insights delivered straight to your inbox!
+                Get weekly book recommendations, reading challenges, and
+                literary insights delivered straight to your inbox!
               </motion.p>
               <motion.div variants={fadeInDown}>
                 <Card className="max-w-md mx-auto">
@@ -440,7 +441,8 @@ export default function LandingPage() {
                 className="mt-8 text-sm text-muted-foreground"
                 variants={fadeInDown}
               >
-                By joining, you'll receive our weekly literary digest. Don't worry, we respect your inbox and you can unsubscribe anytime.
+                By joining, you'll receive our weekly literary digest. Don't
+                worry, we respect your inbox and you can unsubscribe anytime.
               </motion.p>
             </div>
           </motion.section>

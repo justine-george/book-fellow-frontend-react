@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '@/store/store';
-import { registerUser } from '@/store/authSlice';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { registerUser } from "@/store/authSlice";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -33,9 +33,9 @@ export default function RegisterPage() {
     }
     try {
       await dispatch(registerUser({ email, password })).unwrap();
-      navigate('/home');
+      navigate("/home");
     } catch (err) {
-      console.error('Failed to register:', err);
+      console.error("Failed to register:", err);
     }
   };
 
@@ -86,7 +86,11 @@ export default function RegisterPage() {
                 required
               />
             </div>
-            <Button type="submit" className="w-full" disabled={status === 'loading'}>
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={status === "loading"}
+            >
               Sign up
             </Button>
           </form>

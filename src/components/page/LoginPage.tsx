@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '@/store/store';
-import { loginUser } from '@/store/authSlice';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { loginUser } from "@/store/authSlice";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -30,9 +30,9 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       await dispatch(loginUser({ email, password })).unwrap();
-      navigate('/home');
+      navigate("/home");
     } catch (err) {
-      console.error('Failed to log in:', err);
+      console.error("Failed to log in:", err);
     }
   };
 
@@ -93,11 +93,15 @@ export default function LoginPage() {
                 Forgot your password?
               </Link>
             </div>
-            <Button type="submit" className="w-full" disabled={status === 'loading'}>
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={status === "loading"}
+            >
               Sign in
             </Button>
-            {status === 'loading' && <p>Logging in...</p>}
-            {status === 'failed' && <p className="text-red-500">{error}</p>}
+            {status === "loading" && <p>Logging in...</p>}
+            {status === "failed" && <p className="text-red-500">{error}</p>}
           </form>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">

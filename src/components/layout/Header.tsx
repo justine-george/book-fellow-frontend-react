@@ -22,8 +22,8 @@ import {
 } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { logout } from '@/store/authSlice';
+import { useDispatch } from "react-redux";
+import { logout } from "@/store/authSlice";
 
 export const Header = ({ userAvatar }: { userAvatar: string }) => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/');
+    navigate("/");
   };
 
   const handleLogoClick = () => {
@@ -117,7 +117,10 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
                 <span>Settings</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+              <DropdownMenuItem
+                onClick={handleLogout}
+                className="cursor-pointer"
+              >
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>
               </DropdownMenuItem>
