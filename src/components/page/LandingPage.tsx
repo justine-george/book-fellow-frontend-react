@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 import {
   Activity,
@@ -19,6 +19,8 @@ import { Link } from "react-router-dom";
 import bookCover1 from "@/assets/1984.webp";
 import bookCover2 from "@/assets/dune.webp";
 import bookCover3 from "@/assets/the-hobbit.jpg";
+import bookCover4 from "@/assets/pride-and-prejudice.jpg";
+import bookCover5 from "@/assets/to-kill-a-mockingbird.webp";
 
 export default function LandingPage() {
   const [email, setEmail] = useState("");
@@ -114,24 +116,54 @@ export default function LandingPage() {
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/80 z-10"></div>
             <div className="absolute inset-0 flex justify-center items-center">
-              <img
+              <motion.img
                 src={bookCover1}
                 alt="Book Cover 1"
                 className="h-full object-cover opacity-40"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 0.4, x: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
               />
-              <img
+              <motion.img
                 src={bookCover2}
                 alt="Book Cover 2"
                 className="h-full object-cover opacity-40 ml-[-50px]"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 0.4, y: 0 }}
+                transition={{ duration: 1, delay: 0.4 }}
               />
-              <img
+              <motion.img
                 src={bookCover3}
                 alt="Book Cover 3"
                 className="h-full object-cover opacity-40 ml-[-50px]"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 0.4, x: 0 }}
+                transition={{ duration: 1, delay: 0.6 }}
+              />
+              <motion.img
+                src={bookCover4}
+                alt="Book Cover 4"
+                className="h-full object-cover opacity-40 ml-[-50px]"
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 0.4, y: 0 }}
+                transition={{ duration: 1, delay: 0.8 }}
+              />
+              <motion.img
+                src={bookCover5}
+                alt="Book Cover 5"
+                className="h-full object-cover opacity-40 ml-[-50px]"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 0.4, x: 0 }}
+                transition={{ duration: 1, delay: 1 }}
               />
             </div>
           </div>
-          <div className="container mx-auto text-center relative z-20 px-4">
+          <motion.div
+            className="container mx-auto text-center relative z-20 px-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <h2 className="text-6xl font-extrabold mb-6 leading-tight">
               Connect with Fellow
               <br />
@@ -149,7 +181,7 @@ export default function LandingPage() {
                 Get Started <ArrowRight className="ml-2 h-6 w-6" />
               </Button>
             </Link>
-          </div>
+          </motion.div>
         </section>
 
         <section id="features" className="py-12 sm:py-16 bg-background">
