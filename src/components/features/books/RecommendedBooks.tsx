@@ -53,7 +53,11 @@ export const RecommendedBooks = ({
                   </span>
                 </div>
               </div>
-              <Button variant="outline" size="sm" className="mt-2 cursor-pointer">
+              <Button
+                variant="outline"
+                size="sm"
+                className="mt-2 cursor-pointer"
+              >
                 Add to List
               </Button>
             </li>

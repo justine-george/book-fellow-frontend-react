@@ -14,6 +14,9 @@ import {
   X,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import bookCover1 from "@/assets/1984.webp";
+import bookCover2 from "@/assets/dune.webp";
+import bookCover3 from "@/assets/the-hobbit.jpg";
 
 export default function LandingPage() {
   const [email, setEmail] = useState("");
@@ -106,10 +109,27 @@ export default function LandingPage() {
 
       <main className="flex-grow">
         <section className="bg-primary text-primary-foreground py-32 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CjxyZWN0IHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2ZmZiI+PC9yZWN0Pgo8cGF0aCBkPSJNMzYgMjRMNDggMjRMNDggMzZMNDggNDhMMzYgNDhMMjQgNDhMMjQgMzZMMjQgMjRMMzYgMjRaIiBmaWxsPSIjZjFmMWYxIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjwvcGF0aD4KPC9zdmc+')] bg-repeat"></div>
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/80 z-10"></div>
+            <div className="absolute inset-0 flex justify-center items-center">
+              <img
+                src={bookCover1}
+                alt="Book Cover 1"
+                className="h-full object-cover opacity-40"
+              />
+              <img
+                src={bookCover2}
+                alt="Book Cover 2"
+                className="h-full object-cover opacity-40 ml-[-50px]"
+              />
+              <img
+                src={bookCover3}
+                alt="Book Cover 3"
+                className="h-full object-cover opacity-40 ml-[-50px]"
+              />
+            </div>
           </div>
-          <div className="container mx-auto text-center relative z-10">
+          <div className="container mx-auto text-center relative z-20 px-4">
             <h2 className="text-6xl font-extrabold mb-6 leading-tight">
               Connect with Fellow
               <br />
@@ -130,9 +150,11 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="features" className="py-24 bg-background">
-          <div className="container mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16">Features</h2>
+        <section id="features" className="py-12 sm:py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-12 sm:mb-16">
+              Features
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
               {[
                 {
@@ -173,9 +195,9 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="testimonials" className="py-24 bg-secondary/10">
-          <div className="container mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16">
+        <section id="testimonials" className="py-12 sm:py-16 bg-secondary/10">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-12 sm:mb-16">
               What Our Users Say
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -215,8 +237,8 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="py-24 bg-secondary/10">
-          <div className="container mx-auto text-center">
+        <section className="py-12 sm:py-16 bg-secondary/10">
+          <div className="container mx-auto text-center px-4">
             <h2 className="text-4xl font-bold mb-6">
               Join Our Community of Book Lovers
             </h2>
@@ -237,7 +259,11 @@ export default function LandingPage() {
                       required
                     />
                   </div>
-                  <Button type="submit" size="lg" className="w-full text-lg cursor-pointer">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full text-lg cursor-pointer"
+                  >
                     Sign Up
                   </Button>
                 </form>
