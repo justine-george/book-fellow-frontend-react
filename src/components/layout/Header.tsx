@@ -42,7 +42,7 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
   };
 
   return (
-    <header className="bg-slate-900 text-primary-foreground py-4 shadow-md sticky top-0 z-50">
+    <header className="bg-primary text-primary-foreground py-4 sticky top-0 z-50 shadow-md">
       <div className="container mx-auto flex justify-between items-center px-4">
         <div
           className="flex items-center cursor-pointer"
@@ -61,7 +61,7 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
               Search books, reviews, users
             </label>
             <Search
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 h-4 w-4"
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4"
               aria-hidden="true"
             />
             <Input
@@ -72,7 +72,7 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setSearchQuery(e.target.value)
               }
-              className="pl-10 bg-gray-700 text-white border-gray-600 focus:ring-gray-500 h-10 w-full placeholder-gray-300"
+              className="pl-10 bg-primary/20 text-primary-foreground h-9 w-full placeholder-primary-foreground/50 border-primary-foreground/30 focus:border-primary-foreground/50 focus:ring-1 focus:ring-primary-foreground/50"
             />
           </div>
         </form>
@@ -81,7 +81,7 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
             variant="ghost"
             size="icon"
             aria-label="Notifications"
-            className="text-gray-200 hover:bg-gray-600 hover:text-white focus:bg-gray-600 focus:text-white h-10 w-10 transition-colors duration-200"
+            className="text-primary-foreground hover:bg-primary-foreground/10 focus:bg-primary-foreground/10 h-10 w-10 transition-colors duration-200"
           >
             <Bell className="h-5 w-5" />
             <span className="sr-only">Notifications</span>
@@ -90,7 +90,7 @@ export const Header = ({ userAvatar }: { userAvatar: string }) => {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex items-center space-x-2 text-gray-200 hover:bg-gray-600 hover:text-white focus:bg-gray-600 focus:text-white h-10 px-3 transition-colors duration-200"
+                className="flex items-center space-x-2 text-primary-foreground hover:bg-primary-foreground/10 focus:bg-primary-foreground/10 h-10 px-3 transition-colors duration-200"
                 aria-label="Profile menu"
               >
                 <Avatar className="h-8 w-8">
