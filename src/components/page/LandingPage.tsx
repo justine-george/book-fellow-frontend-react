@@ -282,7 +282,7 @@ export default function LandingPage() {
               <Link to="/home">
                 <Button
                   size="lg"
-                  className="text-xl bg-white text-primary hover:bg-primary-foreground hover:text-primary transition-colors duration-300 px-8 py-6"
+                  className="text-xl bg-white text-primary hover:bg-primary-foreground hover:text-primary duration-300 px-8 py-6 hover:shadow-[0_0_15px_rgba(255,255,255,0.5)] hover:scale-105 transform transition-all"
                 >
                   Get Started <ArrowRight className="ml-2 h-6 w-6" />
                 </Button>
