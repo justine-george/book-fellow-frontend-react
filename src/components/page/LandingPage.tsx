@@ -1,10 +1,9 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, useAnimation, Variants } from "framer-motion";
-import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { CustomAlert } from "@/components/ui/CustomAlert";
 
@@ -99,8 +98,32 @@ export default function LandingPage() {
   }, [navigate]);
 
   useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      if (scrollPosition > windowHeight * 0.5) {
+        restOfContentControls.start("visible");
+      }
+    };
+
+    // Initial check
+    handleScroll();
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [restOfContentControls]);
+
+  useEffect(() => {
     const sequence = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for hero animations
+      if (window.scrollY <= window.innerHeight * 0.5) {
+        await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for hero animations
+      }
       await restOfContentControls.start("visible");
     };
     sequence();
@@ -157,7 +180,7 @@ export default function LandingPage() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="font-semibold hover:bg-primary-foreground hover:text-primary"
+                      className="font-semibold transition-colors"
                     >
                       Log In
                     </Button>
@@ -166,9 +189,9 @@ export default function LandingPage() {
                 <li>
                   <Link to="/register">
                     <Button
-                      variant="secondary"
+                      variant="outline"
                       size="sm"
-                      className="font-semibold hover:bg-secondary-foreground hover:text-secondary transition-colors"
+                      className="font-semibold hover:bg-primary-foreground text-primary transition-colors"
                     >
                       Sign Up
                     </Button>
@@ -226,7 +249,7 @@ export default function LandingPage() {
           variants={heroStagger}
         >
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/90 to-primary/70 z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/65 via-primary/95 to-primary/65 z-10"></div>
             <motion.div
               className="absolute inset-0 flex justify-center items-center"
               variants={staggerChildren}
@@ -383,7 +406,7 @@ export default function LandingPage() {
                   },
                 ].map((testimonial, index) => (
                   <motion.div key={index} variants={fadeInDown}>
-                    <Card className="hover:shadow-md transition-shadow duration-300 h-52 sm:h-52 md:h-72 lg:h-64 xl:h-56 flex flex-col">
+                    <Card className="hover:shadow-md transition-shadow duration-300 h-72 flex flex-col">
                       <CardContent className="p-6 flex flex-col h-full">
                         <Quote className="w-10 h-10 text-primary mb-4 flex-shrink-0" />
                         <p className="text-base flex-grow mb-4 overflow-y-auto">
